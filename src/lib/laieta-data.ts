@@ -1,0 +1,1330 @@
+// Contingut reconstruït a partir de fonts públiques autoritzades sobre l'Ona laietana
+// i enriquit amb els annexes aportats (cronologia, obres clau, fonts documentals).
+// Fonts: Viquipèdia (ca.wikipedia.org/wiki/Música_laietana), Cualia.es (Gernot Dudda, 2019),
+// El Punt Avui, Rockdelux (2024), barcelona.cat, Spotify/Tidal (recopilatori Picap 2009),
+// i els documents "El Rock Laietano: La Revolución Contracultural de Barcelona 1970–1980"
+// i "Raíces de la Resistencia" (Annex 3).
+// NOTA: el PDF original "rock_laieta_revisat.pdf" no es va trobar a /upload; vegeu el banner d'avís.
+
+export type CategoriaArtista =
+  | "Fusió"
+  | "Rock progresiu"
+  | "Cantautor"
+  | "Rumba"
+  | "Jazz"
+  | "Postlaietà"
+  | "Instrumental";
+
+export interface Album {
+  titol: string;
+  any: number;
+  segell?: string;
+  nota?: string;
+}
+
+export interface Artista {
+  id: string;
+  nom: string;
+  anyInici?: string;
+  anyFi?: string;
+  categoria: CategoriaArtista;
+  funcio: string;
+  integrants: string[];
+  bio: string;
+  destacat?: boolean;
+  albums: Album[];
+  color: string; // accent hex
+}
+
+export interface Esdeveniment {
+  any: string;
+  titol: string;
+  descripcio: string;
+  icona: "antecedent" | "fundacio" | "disc" | "canvi" | "declivi" | "llegat";
+}
+
+export interface FusioIngredient {
+  id: string;
+  nom: string;
+  descripcio: string;
+  referents: string[];
+  color: string;
+}
+
+export interface Tratxa {
+  pos: number;
+  titol: string;
+  artista: string;
+  durada?: string;
+}
+
+export interface ObraClau {
+  id: string;
+  titol: string;
+  artista: string;
+  any: string;
+  anySort: number;
+  rellevancia: string;
+  color: string;
+}
+
+export interface Citacio {
+  text: string;
+  autor: string;
+  font: string;
+}
+
+export interface FontDocumental {
+  titol: string;
+  autor?: string;
+  detall?: string;
+  tipus: string;
+}
+
+export interface FontEnLinia {
+  nom: string;
+  url: string;
+  descripcio: string;
+}
+
+export const moviment = {
+  titol: "Rock Laieta",
+  subtitol: "Ona laietana · 1970 – 1980",
+  lema: "El revulsiu que va canviar la música catalana",
+  descripcio:
+    "L'Ona laietana —també dita música laietana o, popularment, Rock Laieta— fou un moviment musical sorgit a la primera meitat dels anys 1970 a Barcelona. No fou un estil musical concret, sinó un moviment generacional: una fusió de jazz-rock progresiu, tradició catalana, flamenc i matisos cubano-brasilers que actuà com a revulsiu en la música del país, esdevingué el precedent directe del Rock Català dels anys 90 i fou, en sentit ple, una revolució contracultural barcelonina.",
+  periode: "1970 – 1980 (nucli) · 1969 – 1997 (cicle ampli)",
+  epicentre: "Sala Zeleste — Born, Barcelona",
+  identitat:
+    "El mot «laietà» evoca els laietans, poble ibèric preromà que habitava la regió de Barcelona: una manera de reivindicar una identitat catalana i mediterrània des de la modernitat.",
+} as const;
+
+export const manifest: Citacio[] = [
+  {
+    text:
+      "La ona laietana no fou un estil musical concret, sinó un moviment generacional en el qual, durant la segona meitat dels anys setanta, Barcelona es va obrir a la fusió.",
+    autor: "Rockdelux",
+    font: "50 anys de l'ona laietana (2024)",
+  },
+  {
+    text:
+      "La música laietana actuà com a revulsiu en el cas català i obrí el camí a una escena pròpia.",
+    autor: "Viquipèdia",
+    font: "Música laietana",
+  },
+  {
+    text:
+      "A Zeleste es practicà la millor fusió d'Espanya, amb diferència. Succeí en una època en què no estàvem gaire acostumats a tenir músics virtuosos, i sobretot, professionals.",
+    autor: "Gernot Dudda",
+    font: "Cualia.es (2019)",
+  },
+  {
+    text:
+      "El precedent del Rock Català és l'Ona Laietana dels anys 70, promoguda per la sala Zeleste i emparentada amb la Nova Cançó.",
+    autor: "Indicat",
+    font: "Coneix els orígens del rock català",
+  },
+];
+
+export const contextHistoric = {
+  titol: "Tardofranquisme, transició i contracultura",
+  cos: [
+    "L'Ona laietana irromp en un moment històric decisiu, sobretot a nivell polític, a l'Espanya de començaments dels anys setanta: els darrers anys del franquisme i l'inici de la transició.",
+    "Creix sobre el substrat de la Nova Cançó i del Grup de Folk, i dialoga amb fenòmens coetanis com el rock andaluz: per a molts artistes el rock es quedava curt com a vehicle d'expressió i calia adoptar altres fórmules. És, en sentit ple, una revolució contracultural barcelonina.",
+    "El repertori de Zeleste reflectí les tendències internacionals —rock progresiu proper al jazz, en la línia de Mahavishnu Orchestra, Soft Machine o Miles Davis i els seus deixebles— però alhora serví com a vehicle d'expressió d'una realitat autòctona.",
+  ],
+};
+
+export const fusio: FusioIngredient[] = [
+  {
+    id: "jazzrock",
+    nom: "Jazz-rock nord-americà",
+    descripcio:
+      "El virtuosisme i la fórmula del jazz-rock progresiu d'ultramar: ritmes compostos, improvisació i textura elèctrica.",
+    referents: [
+      "Mahavishnu Orchestra",
+      "Soft Machine",
+      "Miles Davis",
+      "Herbie Hancock",
+      "Chick Corea",
+    ],
+    color: "#f59e0b",
+  },
+  {
+    id: "tradicio",
+    nom: "Tradició catalana",
+    descripcio:
+      "L'arrel mediterrània: sardana, cançó popular i una denominació d'origen que marca la identitat del so laietà.",
+    referents: ["Sardana", "Cançó popular", "Denominació d'origen catalana"],
+    color: "#e11d48",
+  },
+  {
+    id: "novacanco",
+    nom: "Nova Cançó",
+    descripcio:
+      "L'herència de la cançó d'autor compromesa i en català, de la qual provenien molts dels músics que ompliren Zeleste.",
+    referents: [
+      "Ovidi Montllor",
+      "Maria del Mar Bonet",
+      "Quico Pi de la Serra",
+    ],
+    color: "#d97706",
+  },
+  {
+    id: "grupdefolk",
+    nom: "Grup de Folk",
+    descripcio:
+      "L'ala més moderna i psicodèlica del folk català, bressol d'artistes com Sisa i Pau Riba.",
+    referents: ["Sisa", "Pau Riba", "Germans Batiste", "Oriol Tràvia"],
+    color: "#b45309",
+  },
+  {
+    id: "flamenc",
+    nom: "Flamenc",
+    descripcio:
+      "La fusió sense prejudicis: combinar flamenc, tradició catalana i detalls d'altres procedències, com demostrà la «Sardana flamenca».",
+    referents: ["Toti Soler", "Sardana flamenca", "Gato Pérez"],
+    color: "#9a3412",
+  },
+  {
+    id: "cubabrazil",
+    nom: "Matisos cubano-brasilers",
+    descripcio:
+      "Salsa, bossa i ritmes llatins que aportaren groove mediterrani i elegancia a la fórmula de l'Orquestra Mirasol.",
+    referents: ["Salsa", "Bossa nova", "Salsa catalana"],
+    color: "#a16207",
+  },
+  {
+    id: "freejazz",
+    nom: "Free jazz",
+    descripcio:
+      "Els cicles de free jazz a la cartellera de Zeleste: experimentació radical i gesta programadora per a l'època.",
+    referents: ["Cicles de free jazz", "Tete Montoliu", "Improvisació col·lectiva"],
+    color: "#7c2d12",
+  },
+  {
+    id: "progeuro",
+    nom: "Rock progresiu europeu",
+    descripcio:
+      "Les composicions llargues i la narrativa simfònica del prog europeu, filtrades per la sensibilitat mediterrània.",
+    referents: ["Màquina!", "Iceberg", "Mini-òperes instrumentals"],
+    color: "#92400e",
+  },
+];
+
+export const zeleste = {
+  titol: "Sala Zeleste",
+  paper: "L'epicentre de l'Ona laietana",
+  fundacio: "Maig de 1973",
+  fundador: "Víctor Jou, arquitecte",
+  ubicacio: "Carrer Platería (avui Argenteria), barri del Born, Barcelona",
+  context: "Al costat de l'església de Santa Maria del Mar",
+  pilars: [
+    {
+      nom: "Sala",
+      descripcio:
+        "Espai de concerts on actuen, l'endemà de la inauguració, Sloblo —el quintet de Gato Pérez— i, poc després, els Bueyes Madereros d'Eduard Altaba.",
+    },
+    {
+      nom: "Revista",
+      descripcio:
+        "Publicació pròpia que articulà la conversa crítica entorn del moviment i la seva escena.",
+    },
+    {
+      nom: "Segell",
+      descripcio:
+        "Segell discogràfic propi (línia Zeleste-Edigsa des de 1974) que professionalitzà la producció i distribució i donà continuitat al material.",
+    },
+  ],
+  programacio:
+    "La programació fou exemplar i variada: des de cicles de free jazz fins a actuacions de flamenco. Un cartell avui indiscutible que, en aquelles dates, era una autèntica gesta.",
+  imatge: "/laieta/zeleste.png",
+};
+
+// === Cronologia essencial (Annex 1) ===
+export const timeline: Esdeveniment[] = [
+  {
+    any: "1969–1970",
+    titol: "Antecedents psicodèlics",
+    descripcio:
+      "Antecedents de psicodèlia i rock progresiu; aparició d'obres fundacionals com Miniatura i Why?, que preparen el terreny del moviment.",
+    icona: "antecedent",
+  },
+  {
+    any: "1970–1971",
+    titol: "Maduració experimental",
+    descripcio:
+      "Maduració d'un discurs musical experimental a Barcelona que comença a articular una escena pròpia al voltant de la psicodèlia i la fusió.",
+    icona: "antecedent",
+  },
+  {
+    any: "1969–1971",
+    titol: "Dioptria",
+    descripcio:
+      "Edició i difusió de Dioptria, de Pau Riba, referent cabdal del rock psicodèlic català i de la contracultura del país.",
+    icona: "disc",
+  },
+  {
+    any: "1973",
+    titol: "Neix Zeleste",
+    descripcio:
+      "Fundació de Zeleste, epicentre del moviment. La sala esdevé el punt de trobada de la fusió barcelonina.",
+    icona: "fundacio",
+  },
+  {
+    any: "1974",
+    titol: "Línia Zeleste-Edigsa",
+    descripcio:
+      "Aparició de la línia Zeleste-Edigsa, que professionalitza la producció i la distribució discogràfica del fenomen.",
+    icona: "disc",
+  },
+  {
+    any: "1974–1976",
+    titol: "Consolidació de figures",
+    descripcio:
+      "Consolidació de Companyia Elèctrica Dharma, Gato Pérez, Iceberg, Orquestra Plateria, Tete Montoliu, Jordi Sabatés i altres figures principals del moviment.",
+    icona: "disc",
+  },
+  {
+    any: "1975",
+    titol: "Primer Canet Rock",
+    descripcio:
+      "Primer Canet Rock; publicació de Qualsevol nit pot sortir el sol, de Jaume Sisa, disc i cançó emblemàtics de tota una generació.",
+    icona: "disc",
+  },
+  {
+    any: "1976",
+    titol: "Continuïtat del festival",
+    descripcio:
+      "Continuïtat del festival i consolidació popular del discurs laietà, que assoleix plena maduresa creativa i de públic.",
+    icona: "disc",
+  },
+  {
+    any: "1977",
+    titol: "Tramuntana i transformació",
+    descripcio:
+      "Gran àmbit d'èxit de la Companyia Elèctrica Dharma amb Tramuntana, síntesi perfecta entre folk català, progresiu i jazz-rock. Els canvis socials i polítics acceleren la transformació del context.",
+    icona: "canvi",
+  },
+  {
+    any: "1978",
+    titol: "Final del Canet Rock",
+    descripcio:
+      "Final de Canet Rock i inici d'un declivi estètic del moviment; el punk comença a arrasar i els músics laietans perden espai.",
+    icona: "declivi",
+  },
+  {
+    any: "1980",
+    titol: "Tancament del cicle",
+    descripcio:
+      "Tancament simbòlic del cicle laietà; emergència mediàtica de la Movida Madrilenya a escala estatal reorienta l'atenció cultural.",
+    icona: "declivi",
+  },
+  {
+    any: "Segles XX / XXI",
+    titol: "Recuperació i homenatges",
+    descripcio:
+      "Recuperació, homenatges i revalorització del fenomen: recopilatoris, tributs i la memòria viva de Zeleste i l'Ona laietana.",
+    icona: "llegat",
+  },
+];
+
+export const artistes: Artista[] = [
+  {
+    id: "maquina",
+    nom: "Màquina!",
+    anyInici: "1968",
+    anyFi: "1972",
+    categoria: "Rock progresiu",
+    funcio: "Pont yeyé ↔ avantguarda del setanta",
+    integrants: [
+      'Jordi Batiste «Tapi» (veu, baix)',
+      "Enric Herrera (teclats)",
+    ],
+    bio:
+      "El duo fundador —Jordi Batiste «Tapi» i Enric Herrera—, acompanyat per diversos col·laboradors, va publicar Why?, un disc de rock progresiu d'una ambició orquestral insòlita al sud d'Europa. Les actuacions del 1970 i, posteriorment, els concerts amb el bateria del futur Iceberg demostren la continuïtat interna entre «l'abans». Máquina! és el pont essencial entre la cultura yeyé de la primera Barcelona rock i l'avantguarda del setanta.",
+    destacat: true,
+    color: "#ca8a04",
+    albums: [
+      { titol: "Why?", any: 1970, nota: "Ambició orquestral insòlita al sud d'Europa" },
+    ],
+  },
+  {
+    id: "orquestra-mirasol",
+    nom: "Orquestra Mirasol",
+    anyInici: "1974",
+    anyFi: "1977",
+    categoria: "Fusió",
+    funcio: "El primer so laietà",
+    integrants: [
+      "Ricard Roda",
+      "Víctor Ammann",
+      "Xavier Batllés",
+      "Miquel Lizandra",
+      "Pedrito Díaz",
+    ],
+    bio:
+      "Fundada el 1974, la seva música desprèn per tots els poros la Barcelona de mitjan setanta. Trobà l'equilibri entre les influències del jazz-rock nord-americà, els accents mediterranis i els matisos cubano-brasilers. Vinculada decisivament a la modernització del discurs de Maria del Mar Bonet —amb ella, el seu disc Maria del Mar (1974) feu confluir la cançó mediterrània i l'elèctric experimental—, és la prova que l'ona laietana comparteix ADN amb certes franges de la Nova Cançó electrificada. Molts consideren «Salsa catalana» el primer disc realment laietà.",
+    destacat: true,
+    color: "#f59e0b",
+    albums: [
+      {
+        titol: "Salsa catalana",
+        any: 1974,
+        segell: "Edigsa",
+        nota: "Considerat el primer disc realment laietà",
+      },
+      { titol: "D'oca a oca i tira que et toca", any: 1975, segell: "Edigsa" },
+      {
+        titol: "La Boqueria",
+        any: 1977,
+        segell: "Edigsa",
+        nota: "Com a Mirasol Colores",
+      },
+    ],
+  },
+  {
+    id: "companyia-electrica-dharma",
+    nom: "Companyia Elèctrica Dharma",
+    anyInici: "1974",
+    anyFi: "1978",
+    categoria: "Fusió",
+    funcio: "La síntesi perfecte del moviment",
+    integrants: ["Fortunato Guerrero", "Joan Fortuny", "Josep Fortuny", "Enric Peidró"],
+    bio:
+      "Formada el 1974 i amb forts vincles a Zeleste, és potser l'exemple més complet, equilibrat i reeixit del rock laietà: fusiona folk català (sonoritats de cobla i oboes), rock progresiu, jazz-rock i textures mediterrànies i world music. Tramuntana (1977) n'és l'obra mestra i un punt culminant del moviment: va vendre milers de còpies i obrí la banda al circuit massiu. El concert al Pavelló d'Esports del Real Madrid davant milers d'assistents —amb operatiu de seguretat— demostrà que era un fenomen de masses malgrat l'alta complexitat artística del seu discurs.",
+    destacat: true,
+    color: "#e11d48",
+    albums: [
+      { titol: "Diumenge", any: 1975, nota: "Obre la porta al so del grup" },
+      { titol: "L'Oucomballa", any: 1976, nota: "Més laietà que el primer" },
+      {
+        titol: "Tramuntana",
+        any: 1977,
+        nota: "Obra mestra; síntesi folk + progresiu + jazz-rock",
+      },
+      { titol: "L'àngel de la dansa", any: 1978, nota: "L'any del declivi" },
+    ],
+  },
+  {
+    id: "iceberg",
+    nom: "Iceberg",
+    anyInici: "1975",
+    anyFi: "1979",
+    categoria: "Rock progresiu",
+    funcio: "Sostre tècnic del moviment",
+    integrants: [
+      "Max Sunyer (guitarra)",
+      'Josep Mas «Kitflus» (teclats)',
+      "Primi Sancho (baix)",
+      "Jordi Colomer (bateria)",
+    ],
+    bio:
+      "El quartet canònic del jazz-rock català. La seva lectura de la Mahavishnu Orchestra i Weather Report es traduí en un so de gran potència tècnica. L'LP Coses Nostres (1976) inclou «La flamenca elèctrica», composició que exemplifica la síntesi mediterrània del grup: estructura jazzística, fraseig andalús i distorsió de rock. Iceberg representa el sostre tècnic del moviment i, alhora, el punt on l'Ona comença a parlar un idioma incomprensible per al públic del carrer —distància que contribuiria, dos anys més tard, a l'agonia del projecte.",
+    destacat: true,
+    color: "#d97706",
+    albums: [
+      { titol: "Tutankhamon", any: 1975, nota: "Debut" },
+      {
+        titol: "Coses Nostres",
+        any: 1976,
+        nota: "Inclou «La flamenca elèctrica» — síntesi mediterrània",
+      },
+      { titol: "Instant", any: 1977 },
+      { titol: "Arc de Cercle", any: 1978 },
+    ],
+  },
+  {
+    id: "secta-sonica",
+    nom: "Secta Sònica",
+    anyInici: "1976",
+    anyFi: "1977",
+    categoria: "Fusió",
+    funcio: "Gran vèrtex del laietanisme",
+    integrants: [
+      "Gato Pérez",
+      "Rafael Zaragoza",
+      "Jordi Bonell",
+      "Víctor Cortina",
+    ],
+    bio:
+      "Fundada per dos integrants de Sloblo —Gato Pérez i Rafael Zaragoza—, amb Jordi Bonell i Víctor Cortina. Ens deuen dos LPs a cada qual millor, amb logres absolutament genuïns: un dels grans vèrtexs del laietanisme.",
+    destacat: true,
+    color: "#b45309",
+    albums: [
+      { titol: "Fred Pedralbes", any: 1976, segell: "Edigsa" },
+      { titol: "Astroferia", any: 1977, segell: "Edigsa" },
+    ],
+  },
+  {
+    id: "gato-perez",
+    nom: "Gato Pérez",
+    anyInici: "1973",
+    anyFi: "1978",
+    categoria: "Rumba",
+    funcio: "Pont contracultura ↔ música de carrer",
+    integrants: ['Xavier Patricio Pérez «Gato» (veu, guitarra)', "Formacions variables"],
+    bio:
+      "Xavier Patricio Pérez (1951–1990), nascut a Buenos Aires i relacionat amb la cultura barcelonina. Figura fonamental i, potser, el definidor terminològic del moviment: se li atribueix l'encuny o la legitimació del concepte «Ona Laietana». Pont entre el rock progresiu, la rumba catalana i la poesia urbana, la seva evolució segueix la del propi moviment: des de Slobo o Secta Sònica passa a un llenguatge proper a la rumba urbana. Carabruta (1978) fou un gir; la seva influència traspassà les vendes i aportà una dimensió poètica, citadina i gitana a una música encara minoritària en certs sectors cultes. Model d'avantguarda popular.",
+    destacat: true,
+    color: "#9a3412",
+    albums: [
+      {
+        titol: "Carabruta",
+        any: 1978,
+        segell: "Belter",
+        nota: "Gir cap a la rumba; amb «Rumba dels 60's»",
+      },
+    ],
+  },
+  {
+    id: "toti-soler",
+    nom: "Toti Soler",
+    anyInici: "1973",
+    categoria: "Instrumental",
+    funcio: "La fusió sense prejudicis",
+    integrants: ["Toti Soler (guitarra)"],
+    bio:
+      "Ja hi era donant guerra abans que ningú. Autor de composicions de tanta qualitat com la «Sardana flamenca», peça instrumental del disc «El Gat Blanc» (1973): una demostració exemplar de fins on arribava la fusió, feta sense cap prejudici, combinant flamenc, tradició catalana i detalls d'altres procedències. Amb Jordi Sabatés formà també Om, formació de curt recorregut però de significació decisiva.",
+    color: "#a16207",
+    albums: [
+      { titol: "El Gat Blanc", any: 1973, nota: "Amb «Sardana flamenca»" },
+      {
+        titol: "Dúos piano i guitarra (amb Jordi Sabatés)",
+        any: 1973,
+        nota: "Àlbum de duos",
+      },
+    ],
+  },
+  {
+    id: "jordi-sabates",
+    nom: "Jordi Sabatés",
+    anyInici: "1971",
+    categoria: "Instrumental",
+    funcio: "Pianista, adelantat a tots",
+    integrants: ["Jordi Sabatés (piano)"],
+    bio:
+      "Pianista essencial de l'ona laietana, adelantat a tants altres companys. Col·laborà amb bandes com Picnic i Om, i amb cantautors com Ovidi Montllor, Maria del Mar Bonet i Quico Pi de la Serra, abans de formar el seu propi grup Jarka el 1971. Amb Toti Soler formà també Om. El 1974 publicà amb Tete Montoliu «Vampyria» (gravat a Gemma Estudis), simbiosi excel·lent entre jazz universal i avantguarda local.",
+    color: "#7c2d12",
+    albums: [
+      { titol: "Jarka (grup propi)", any: 1971, nota: "Formació del grup" },
+      { titol: "Dúos amb Toti Soler", any: 1973 },
+      { titol: "Vampyria (amb Tete Montoliu)", any: 1974, nota: "Jazz universal + avantguarda — Gemma Estudis" },
+    ],
+  },
+  {
+    id: "tete-montoliu",
+    nom: "Tete Montoliu",
+    anyInici: "1974",
+    categoria: "Jazz",
+    funcio: "Pianista universal i escut internacional",
+    integrants: ["Tete Montoliu (piano)"],
+    bio:
+      "El gran pianista universal del jazz català (1933–1997): company de gires de Dexter Gordon, Roland Kirk, Lionel Hampton i Ben Webster; el seu Live at the Village Gate de 1963 el consagrà a Nova York. Als anys setanta tornà a exercir de referent per a tota l'ona, i la font primera esmenta els seus enregistraments amb Sabatés (Vampyria, 1974, gravat a Gemma Estudis). La seva legitimitat internacional fou un escut i un model per a una escena que, d'altra manera, hauria pogut ser desprestigiada com a folklòrica provincial.",
+    destacat: true,
+    color: "#92400e",
+    albums: [
+      { titol: "Vampyria (amb Jordi Sabatés)", any: 1974, nota: "Gemma Estudis — simbiosi jazz + avantguarda" },
+    ],
+  },
+  {
+    id: "om",
+    nom: "Om (Toti Soler i Jordi Sabatés)",
+    anyInici: "1973",
+    categoria: "Instrumental",
+    funcio: "Folk mediterrani + suite progresiva",
+    integrants: ["Toti Soler (guitarra)", "Jordi Sabatés (piano)"],
+    bio:
+      "Formació de curt recorregut però de significació decisiva: el guitarrista Toti Soler i el pianista Jordi Sabatés, junts sota aquesta denominació, enllaçaren el folk mediterrani, la improvisació jazzística i l'estructura de suite progresiva. La participació de Soler a la guitarra de l'enregistrament de Dioptria situa Om com una de les mescles primordials del llenguatge laietà: virtuosisme, folklore i transgressió alhora.",
+    color: "#a16207",
+    albums: [],
+  },
+  {
+    id: "fusioon",
+    nom: "Fusioon",
+    anyInici: "1974",
+    categoria: "Fusió",
+    funcio: "Jazz-rock → flamenco",
+    integrants: [
+      "Joan Albert Amargós (teclats)",
+      "Carles Benavent (baix)",
+      "Santi Arisa (bateria)",
+    ],
+    bio:
+      "Projecte de fusió. Amargós i Benavent provenen del jazz-rock, però Benavent —un dels baixistes més reconeguts del país— acabaria sent una peça clau del circuit flamenco de l'època (Paco de Lucía). Les fonts consignen la presència de Fusioon en festivals com el de Granollers, al costat de Tukky i d'altres formacions del cercle de Barcelona.",
+    color: "#92400e",
+    albums: [],
+  },
+  {
+    id: "musica-urbana",
+    nom: "Música Urbana",
+    anyInici: "1977",
+    categoria: "Fusió",
+    funcio: "Barcelona sona tan sofisticada com Londres",
+    integrants: ["Jordi Bonell (guitarra)", "Joan Albert Amargós (teclats)"],
+    bio:
+      "Formació de fusió jazz-rock que va publicar Música Urbana i Iberia (1978). El seu interès és doble: mostra una Barcelona que sona tan sofisticada com Londres i, amb Iberia, exemplifica la via de la «muntanya sonora» —compassos de folk reinterpretats amb orquestració elèctrica.",
+    color: "#854d0e",
+    albums: [
+      { titol: "Música Urbana", any: 1978 },
+      { titol: "Iberia", any: 1978, nota: "«Muntanya sonora»: folk + orquestració elèctrica" },
+    ],
+  },
+  {
+    id: "xavier-ribalta",
+    nom: "Xavier Ribalta",
+    anyInici: "1958",
+    categoria: "Jazz",
+    funcio: "Pioner del jazz mediterrani barceloní",
+    integrants: ["Xavier Ribalta (piano)"],
+    bio:
+      "Pianista i compositor, pioner d'un jazz mediterrani i barceloní des de finals dels cinquanta, amb àlbums de jazz flamenco-pop i, més tard, col·laboracions dins el cercle de la fusió. Menys mediàtic que Montoliu però igualment fonamental, connecta el circuit del jazz clàssic amb la curiositat de l'underground.",
+    color: "#78350f",
+    albums: [],
+  },
+  {
+    id: "barcelona-traction",
+    nom: "Barcelona Traction",
+    anyInici: "1973",
+    categoria: "Fusió",
+    funcio: "Art-pop barroc",
+    integrants: ["Formació col·lectiva"],
+    bio:
+      "Dúo de pop barroc amb LP homònim (1975) dins la línia de la sala. La seva «Els carrusells de la calvície» és potser la cançó laietana de major reedició posterior: folk-fantasmagòric, veus superposades, un mite de l'Sgt. Pepper's de la Vall d'Hebron. Obra de culte tardà que resumeix la voluntat d'art-pop del moviment. Present al recopilatori «Música Laietana. Zeleste» amb «Sudamérica».",
+    color: "#9a3412",
+    albums: [
+      { titol: "Barcelona Traction (LP)", any: 1975, nota: "Art-pop barroc — línia Zeleste" },
+      { titol: "Presència al recopilatori Zeleste", any: 2009 },
+    ],
+  },
+  {
+    id: "bueyes-madereros",
+    nom: "Bueyes Madereros",
+    anyInici: "1973",
+    categoria: "Fusió",
+    funcio: "Grup primerenc de Zeleste",
+    integrants: ["Eduard Altaba"],
+    bio:
+      "Grup format per Eduard Altaba el 1973, un dels primers a actuar a Zeleste poc després de la inauguració. Peça de carrera en la història primerenca de la sala.",
+    color: "#78350f",
+    albums: [],
+  },
+  {
+    id: "esqueixada-sniff",
+    nom: "Esqueixada Sniff",
+    anyInici: "1975",
+    categoria: "Fusió",
+    funcio: "Capa professional d'instrumentistes",
+    integrants: ["Joan Muntalà (guitarra)", "Formació col·lectiva"],
+    bio:
+      "Combo instrumentista que va publicar a través de la línia Zeleste-Edigsa el seu disc Som de la tèrbol? (1975). Sota un nom que és tot un programa —barreja de cuina popular i ironia hippy—, practica un jazz-rock català de seccions de vent, groove i humor conceptual, amb el guitarrista Joan Muntalà com a figura central. La seva existència confirma que el circuit no era només cosa de dues o tres estrelles: hi havia una capa professional d'instrumentistes joves altament qualificats. «Ocells» (1979) és un dels grans hitos del so laietà.",
+    color: "#854d0e",
+    albums: [
+      { titol: "Som de la tèrbol?", any: 1975, segell: "Zeleste-Edigsa", nota: "Debut — jazz-rock de vent, groove i humor" },
+      { titol: "En concert", any: 1979, nota: "En directe a Zeleste" },
+      { titol: "Ocells", any: 1979, nota: "Gran hito del so laietà" },
+    ],
+  },
+  {
+    id: "orquestra-plateria",
+    nom: "Orquestra Plateria",
+    anyInici: "1974",
+    categoria: "Fusió",
+    funcio: "Projecte de ball cultiu",
+    integrants: ["Formació col·lectiva"],
+    bio:
+      "Formació del ventall laietà que contribuí a fer del discurs laietà un fenomen popular i festiu —el projecte de ball cultiu del moviment—, en la línia de la consolidació de figures del 1974–1976.",
+    color: "#b45309",
+    albums: [],
+  },
+  {
+    id: "altres-grups",
+    nom: "Altres formacions de l'òrbita",
+    anyInici: "1974",
+    anyFi: "1979",
+    categoria: "Fusió",
+    funcio: "Teixit de l'escena",
+    integrants: [
+      "Blay Tritono",
+      "Rondalla de la Costa",
+      "Tropopausa",
+    ],
+    bio:
+      "Al voltant de Zeleste es creà un teixit d'escena ample: bandes com Blay Tritono, la Rondalla de la Costa i Tropopausa completaren el ventall de formacions que feren de la Barcelona dels 70 un laboratori de fusió.",
+    color: "#a1582c",
+    albums: [],
+  },
+  {
+    id: "pegasus",
+    nom: "Pegasus",
+    anyInici: "1982",
+    anyFi: "1997",
+    categoria: "Postlaietà",
+    funcio: "Postlaietanisme ilustrat",
+    integrants: ["Membres hereus de la tradició de Zeleste"],
+    bio:
+      "Supergrup que partí de la tradició instrumental de Zeleste de Barcelona i avançà des del laietanisme cap a un «postlaietanisme ilustrat»: un jazz de fusió que conquistà públic i crítica al llarg dels vuit discs que publicaren entre 1982 i 1997.",
+    destacat: true,
+    color: "#fbbf24",
+    albums: [
+      { titol: "Nuevos encuentros", any: 1982, nota: "Optimisme mediterrani" },
+      { titol: "Comunicació", any: 1983, nota: "Jazz avançat" },
+      { titol: "Searching", any: 1984 },
+      {
+        titol: "Montreux Jazz Festival",
+        any: 1985,
+        nota: "Registre de l'actuació al festival",
+      },
+      {
+        titol: "Simfonia d'una gran ciutat",
+        any: 1987,
+        nota: "BSO per al film homònim de Walter Ruttman (1927)",
+      },
+      { titol: "Cóctel", any: 1988 },
+      { titol: "El setè circle", any: 1990 },
+      { titol: "Selva pagana", any: 1997, nota: "Sonoritat més lírica" },
+    ],
+  },
+  {
+    id: "sisa",
+    nom: "Sisa",
+    anyInici: "1970",
+    categoria: "Cantautor",
+    funcio: "Himne generacional i cabaret galàctic",
+    integrants: ["Jaume Sisa"],
+    bio:
+      "Nascut el 1948 i traspassat el 2024, una de les figures més populars, carismàtiques i representatives de l'esperit laietà: teatre musical, experimentació, llum lírica, sarcasme i tendresa, amb una capacitat extraordinària per connectar amb públics diversos. Qualsevol nit pot sortir el sol (1975) simbolitza el fenomen —èxit immediat i transversal, himne de generació, un desig de llum enmig de la nit política. «El Cabaret Galàctic» resumeix el projecte: festiu, culte, oníric i popular; gairebé una definició del moviment.",
+    color: "#ca8a04",
+    albums: [
+      { titol: "Música Dispersa", any: 1971 },
+      { titol: "Orgia", any: 1973 },
+      {
+        titol: "Qualsevol nit pot sortir el sol",
+        any: 1975,
+        nota: "Himne de generació",
+      },
+      { titol: "Galeta Galàctica", any: 1976 },
+      { titol: "La Catedral", any: 1977 },
+    ],
+  },
+  {
+    id: "pau-riba",
+    nom: "Pau Riba",
+    anyInici: "1969",
+    categoria: "Cantautor",
+    funcio: "Psicodèlia, provocació i llenguatge propi",
+    integrants: ["Pau Riba"],
+    bio:
+      "Nascut el 1948 i mort el 2022, ocupa un lloc gairebé mític: alhora músic, compositor, performance, intel·lectual i provocador. Nét dels poetes Carles Riba i Clementina Arderiu, representà la versió més radical de l'avantguarda catalana —sofisticació poètica, experimentació sonora, crítica social i llibertat individual, en ruptura frontal amb la sensibilitat burgesa del seu entorn. Beví de Dylan, del folk anglosaxó, de la psicodèlia i de l'exotisme, però ho traduí en un llenguatge barceloní i català d'una singularitat molt alta: la dimensió contracultural del rock laietà.",
+    destacat: true,
+    color: "#b45309",
+    albums: [
+      {
+        titol: "Miniatura",
+        any: 1969,
+        nota: "Pau Riba i col·lectiu — naixement de la psicodèlia espanyola",
+      },
+      {
+        titol: "Dioptria",
+        any: 1970,
+        nota: "Obra major del rock psicodèlic en català; disc pioner",
+      },
+      {
+        titol: "Jo, la Donya i el Gripau",
+        any: 1971,
+        nota: "Folk i experimental — etapa més àcida",
+      },
+      { titol: "Canet 1975 (directe)", any: 1975 },
+      { titol: "De Riba a Riba (amb Big Ensemble)", any: 2016, nota: "Obra tardana" },
+    ],
+  },
+];
+
+// === Músics de sessió i nuclis menors (6.5.9) ===
+export interface MusicSessio {
+  nom: string;
+  funcio: string;
+}
+
+export const musicsSessio = {
+  titol: "Músics de sessió i nuclis menors",
+  sub: "La capa instrumentista que no va desaparèixer",
+  valor:
+    "Aquesta capa instrumentista explica per què, quan l'ona es va dissoldre, els seus músics no van desaparèixer: van nodrir la nova cançó, la pop de la dècada següent, el flamenco-jazz i els arranjaments de la indústria —un altre element del llegat silenciat del moviment.",
+  musics: [
+    {
+      nom: "Joan Albert Amargós",
+      funcio:
+        "Teclista i arranjador; disc instrumental propi dins l'entorn Zeleste; més tard figura cabdal dels arranjaments de la pop catalana.",
+    },
+    {
+      nom: "Carles Benavent",
+      funcio: "Baix; pont entre l'ona, el jazz-rock i el flamenco de Paco de Lucía.",
+    },
+    {
+      nom: "Xavier Batllés",
+      funcio:
+        "Bateria, vinculat a projectes del sector de fusió; present al concert de l'Auditori del 2022.",
+    },
+    { nom: "Jordi Bonell", funcio: "Guitarrista de fusió." },
+    {
+      nom: "Primi Sancho i Jordi Colomer",
+      funcio: "La columna rítmica d'Iceberg.",
+    },
+    {
+      nom: 'Josep Mas «Kitflus»',
+      funcio: "Teclista; futur productor de referència de la Barcelona pop.",
+    },
+    {
+      nom: "Manel Camp",
+      funcio: "Pianista de jazz-fusió; membre de la xarxa d'instrumentistes.",
+    },
+    {
+      nom: "Joan Muntalà",
+      funcio: "Guitarra d'Esqueixada Sniff i habitual de l'estudi.",
+    },
+  ] as MusicSessio[],
+};
+
+// === Obres clau (Annex 2) ===
+export const obresClaue: ObraClau[] = [
+  {
+    id: "miniatura",
+    titol: "Miniatura",
+    artista: "Pau Riba i col·lectiu",
+    any: "1969",
+    anySort: 1969,
+    rellevancia: "Gènere seminal de la psicodèlia local.",
+    color: "#b45309",
+  },
+  {
+    id: "why",
+    titol: "Why?",
+    artista: "Màquina!",
+    any: "1970",
+    anySort: 1970,
+    rellevancia:
+      "Un dels primers grans àlbums del rock progressiu de qualitat a Barcelona.",
+    color: "#ca8a04",
+  },
+  {
+    id: "dioptria",
+    titol: "Dioptria",
+    artista: "Pau Riba",
+    any: "1970–1971",
+    anySort: 1970,
+    rellevancia:
+      "Fita cabdal del rock psicodèlic i de la contracultura catalana.",
+    color: "#92400e",
+  },
+  {
+    id: "vampyria",
+    titol: "Vampyria",
+    artista: "Tete Montoliu / Jordi Sabatés",
+    any: "1974",
+    anySort: 1974,
+    rellevancia: "Simbiosi excel·lent entre jazz universal i avantguarda local.",
+    color: "#7c2d12",
+  },
+  {
+    id: "qualsevol-nit",
+    titol: "Qualsevol nit pot sortir el sol",
+    artista: "Jaume Sisa",
+    any: "1975",
+    anySort: 1975,
+    rellevancia: "Disc i cançó emblemàtics del moviment i de tota una generació.",
+    color: "#d97706",
+  },
+  {
+    id: "coses-nostres",
+    titol: "Coses Nostres",
+    artista: "Iceberg",
+    any: "1976",
+    anySort: 1976,
+    rellevancia: "Referent nacional del jazz-rock de qualitats elevades.",
+    color: "#9a3412",
+  },
+  {
+    id: "flamenca-electrica",
+    titol: "La Flamenca Elèctrica",
+    artista: "Iceberg",
+    any: "1976",
+    anySort: 1976,
+    rellevancia: "Peça central de la seva producció.",
+    color: "#a16207",
+  },
+  {
+    id: "tramuntana",
+    titol: "Tramuntana",
+    artista: "Companyia Elèctrica Dharma",
+    any: "1977",
+    anySort: 1977,
+    rellevancia: "Síntesi perfecta entre folk català, progressiu i jazz-rock.",
+    color: "#e11d48",
+  },
+];
+
+export const recopilatori = {
+  titol: "Música Laietana. Zeleste",
+  segell: "Picap Records",
+  any: 2009,
+  cancons: 19,
+  durada: "2 h 01 min",
+  descripcio:
+    "Recopilatori crucial per entendre el que es coïa musicalment a la Barcelona de mitjan anys setanta. Posa al pedestal que li correspon la sala Zeleste, epicentre del moviment. Recull 19 cançons dels grups que articularen l'ona laietana.",
+  tracks: [
+    { pos: 1, titol: "No Juguis amb Set Miralls", artista: "Orquestra Mirasol" },
+    { pos: 2, titol: "Violentos los Correa", artista: "Secta Sònica" },
+    { pos: 3, titol: "Sudamérica", artista: "Barcelona Traction" },
+    { pos: 4, titol: "L'Oucomballa", artista: "Companyia Elèctrica Dharma" },
+    { pos: 5, titol: "Agost", artista: "Formació laietana" },
+    { pos: 6, titol: "Tot L'enyor de Demà", artista: "Formació laietana" },
+    { pos: 7, titol: "Saura", artista: "Formació laietana" },
+    { pos: 8, titol: "Llàgrimes I Petons", artista: "Pau Riba" },
+  ] as Tratxa[],
+} as const;
+
+export const llegat = {
+  titol: "El llegat",
+  introduccio:
+    "Acabat el cicle laietà (tancament simbòlic el 1980 amb l'arribada de la Movida Madrilenya), la seva empremta perdura: en el postlaietanisme ilustrat de Pegasus, en el naixement del Rock Català dels 90 i en la recuperació i homenatges dels segles XX i XXI.",
+  hereus: [
+    {
+      nom: "Pegasus",
+      descripcio:
+        "Vuit discs entre 1982 i 1997 que portaren la fusió de Zeleste a festivals internacionals com Montreux i a bandes sonores per al cinema mut.",
+    },
+    {
+      nom: "Rock Català (anys 90)",
+      descripcio:
+        "Sopa de Cabra, Sau, Sangtraït i Els Pets recullen el relleu d'una escena autòctona que l'Ona Laietana havia inaugurat dues dècades abans.",
+    },
+    {
+      nom: "Recuperació i homenatges",
+      descripcio:
+        "Recopilatoris (Picap, 2009), tributs com el de 37 músics del 2024 i la memòria viva en fonts hemerogràfiques i enciclopèdiques revaloritzen el fenomen als segles XX i XXI.",
+    },
+  ],
+  imatge: ["/laieta/vinyl.png", "/laieta/legacy.png"],
+};
+
+// === Fonts documentals consolidades (Annex 3) ===
+export const fontsDocumentals = {
+  primaries: [
+    {
+      titol: "El Rock Laietano: La Revolución Contracultural de Barcelona 1970–1980",
+      tipus: "Font primària · Llibre",
+    },
+    {
+      titol:
+        "Raíces de la Resistencia: Espacios, Figuras e Identidad en la Contracultura del Rock Laietano",
+      tipus: "Font primària · Llibre",
+    },
+  ] as FontDocumental[],
+  secondaries: [
+    {
+      titol: "Barcelona, del rock progresivo a la música laietana",
+      autor: "Àlex Gómez-Font",
+      tipus: "Assaig",
+    },
+    {
+      titol: "Premsa especialitzada en cultura underground i rock",
+      detall: "Rockdelux, Onda Cero, El Nacional, La Vanguardia, Público, El Periódico",
+      tipus: "Premsa especialitzada",
+    },
+    {
+      titol: "Articles de memòria cultural sobre Zeleste i contracultura",
+      detall:
+        "EFEeme, The New Barcelona Post, Palau Robert, Fundació Joan Miró i entitats associades a la divulgació de la cultura barcelonina dels setanta",
+      tipus: "Articles de memòria",
+    },
+    {
+      titol: "Recursos enciclopèdics musicals i de memòria viva",
+      detall:
+        "La Fonoteca, Progarchives, Wikipedia, blogs especialitzats i fonts hemerogràfiques",
+      tipus: "Recursos enciclopèdics",
+    },
+  ] as FontDocumental[],
+};
+
+export const fontsEnLinia: FontEnLinia[] = [
+  {
+    nom: "Viquipèdia — Música laietana",
+    url: "https://ca.wikipedia.org/wiki/M%C3%BAsica_laietana",
+    descripcio: "Article enciclopèdic de referència en català.",
+  },
+  {
+    nom: "Cualia.es — La història de Zeleste i la música laietana (1973–1978)",
+    url: "https://cualia.es/la-historia-de-zeleste-y-la-musica-layetana-1973-1978",
+    descripcio: "Crònica detallada de Gernot Dudda (2019).",
+  },
+  {
+    nom: "El Punt Avui — La història de Zeleste i l'Ona Laietana",
+    url: "https://www.elpuntavui.cat/article/474780-la-historia-de-zeleste-i-lona-laietana.html",
+    descripcio: "Article de Xavier Roca.",
+  },
+  {
+    nom: "Spotify / Tidal — Música Laietana. Zeleste",
+    url: "https://open.spotify.com/album/3iKphHnXn5xLVzabQytEfR",
+    descripcio: "Recopilatori (Picap Records, 2009), 19 cançons, 2 h 01 min.",
+  },
+  {
+    nom: "barcelona.cat — Tribut a Zeleste i l'Ona Laietana",
+    url: "https://www.barcelona.cat/barcelonacultura/en/barcelona-cultura/tribute-to-the-barcelona-of-zeleste-and-ona-laietana_1434464",
+    descripcio: "Espectacle tribut del 2024 amb 37 músics.",
+  },
+];
+
+// === Les persones indispensables (fora de l'escenari) ===
+export type CategoriaPersona =
+  | "Gestió i producció"
+  | "Imatge i escenografia"
+  | "Publicacions i crònica"
+  | "Memòria i recuperació";
+
+export interface Persona {
+  id: string;
+  nom: string;
+  funcio: string;
+  categoria: CategoriaPersona;
+  bio: string;
+  destacar?: boolean;
+  tags?: string[];
+  color: string;
+}
+
+export const personesIntro = {
+  titol: "Les persones indispensables",
+  subtitol: "Fora de l'escenari",
+  lede: "Cap ecosistema contracultural no es sosté sense una estructura. A l'Ona Laietana, el nucli visible no era l'estrella: eren els qui fabricaven les condicions perquè l'estrella existís.",
+  categories: [
+    "Gestió i producció",
+    "Imatge i escenografia",
+    "Publicacions i crònica",
+    "Memòria i recuperació",
+  ] as CategoriaPersona[],
+};
+
+export const persones: Persona[] = [
+  // --- 6.8.1 Gestió i producció musical ---
+  {
+    id: "victor-jou",
+    nom: "Víctor Jou",
+    funcio: "Fundador i motor de Zeleste",
+    categoria: "Gestió i producció",
+    bio:
+      "La seva aposta personal —programació diària, el mitjà de casa-club, serveis tècnics propis i logística de gira— va ser l'aïllament empresarial que el règim no oferia. Sense Jou, no hi ha moviment: construeix l'ecosistema on la fusió es fa possible.",
+    destacar: true,
+    tags: ["Zeleste", "Programació", "Logística"],
+    color: "#f59e0b",
+  },
+  {
+    id: "rafael-moll",
+    nom: "Rafael Moll",
+    funcio: "Productor i director executiu (Edigsa / Gasa)",
+    categoria: "Gestió i producció",
+    bio:
+      "La mà industrial de Sisa, de la línia Zeleste-Edigsa i de bona part de les gravacions clau. El seu criteri tècnic i empresarial va fer professional allò que era artesà i donà al fenomen la solidesa d'una veritable discografia.",
+    destacar: true,
+    tags: ["Edigsa", "Gasa", "Producció"],
+    color: "#e11d48",
+  },
+  {
+    id: "josep-maria-espinals",
+    nom: "Josep Maria Espinàs",
+    funcio: "Escriptor, cronista i executiu a Edigsa",
+    categoria: "Gestió i producció",
+    bio:
+      "Escriptor i cronista de la gauche divine que exercí funcions executives dins Edigsa. Anys més tard publicà unes memòries sobre la sala Zeleste, convertint en literatura el testimoni de primera mà.",
+    tags: ["Gauche divine", "Edigsa", "Memòries"],
+    color: "#d97706",
+  },
+  {
+    id: "santiago-roqueta",
+    nom: "Santiago Roqueta",
+    funcio: "Arquitecte del projecte inicial de Zeleste",
+    categoria: "Gestió i producció",
+    bio:
+      "Arquitecte del projecte inicial de Zeleste: dona forma física a la intuïció de Jou. La sala com a espai —la seva acústica, la seva atmosfera— neix del seu traç.",
+    tags: ["Arquitectura", "Espai"],
+    color: "#b45309",
+  },
+  {
+    id: "pebrots-la-trinca",
+    nom: "Pebrots / La Trinca",
+    funcio: "Estructura promotora i saber-faire teatral",
+    categoria: "Gestió i producció",
+    bio:
+      "Josep Maria Mainat i els seus socis aportaren a Canet Rock l'estructura promotora, la infraestructura i el savoir-faire teatral: una prova més que a Barcelona la contracultura musical i l'espectacle festiu treballaven a l'espai.",
+    tags: ["Canet Rock", "Promoció", "Teatre"],
+    color: "#9a3412",
+  },
+  {
+    id: "gemma-estudis",
+    nom: "Gemma Estudis (Sant Cugat)",
+    funcio: "Estudi de gravació de referència",
+    categoria: "Gestió i producció",
+    bio:
+      "L'estudi de Sant Cugat on es registraren discos cabdals. Els tècnics habituals donaren a les bandes una qualitat d'enregistrament comparable a la del mercat anglès.",
+    tags: ["Estudi", "Sant Cugat", "So"],
+    color: "#a16207",
+  },
+  // --- 6.8.2 Imatge i escenografia ---
+  {
+    id: "miquel-angel-llopart",
+    nom: "Miquel Àngel Llopart",
+    funcio: "Escenògraf, cartellista i artista visual",
+    categoria: "Imatge i escenografia",
+    bio:
+      "Figura central de la imatge de Zeleste, dels espectacles de Sisa i dels cartells de l'ona. El llenguatge plàstic del moviment —psicodèlic, teatral, barroc— li deu molt.",
+    destacar: true,
+    tags: ["Cartells", "Escenografia", "Sisa"],
+    color: "#92400e",
+  },
+  {
+    id: "pau-riba-visual",
+    nom: "Pau Riba (autor visual)",
+    funcio: "Cartell polèmic per a Canet Rock",
+    categoria: "Imatge i escenografia",
+    bio:
+      "El dossier consigna també un cartell polèmic seu per a Canet Rock, motiu de conflicte amb l'Església: la vessant visual i provocadora d'un autor també fonamental en la música.",
+    tags: ["Canet Rock", "Cartell", "Polèmica"],
+    color: "#ca8a04",
+  },
+  // --- 6.8.3 Publicacions, ràdio i crònica ---
+  {
+    id: "pepe-ribas",
+    nom: "Pepe Ribas",
+    funcio: "L'editor contracultural",
+    categoria: "Publicacions i crònica",
+    bio:
+      "Revistes Ajoblanco i Star, llibres, còmic (El Rollo enmascarado i el circuit del còmic del underground nacional). Testimoni clau en exposicions posteriors i gran teixidor de la xarxa underground.",
+    destacar: true,
+    tags: ["Ajoblanco", "Star", "Còmic"],
+    color: "#fbbf24",
+  },
+  {
+    id: "pere-pons",
+    nom: "Pere Pons",
+    funcio: "Periodista i cronista de la gauche divine",
+    categoria: "Publicacions i crònica",
+    bio:
+      "Periodista i autor, cronista de la gauche divine, citat a la primera font amb anàlisi del discurs «vampíric» de l'escena.",
+    tags: ["Crònica", "Gauche divine"],
+    color: "#b45309",
+  },
+  {
+    id: "vazquez-montalban-terenci-moix",
+    nom: "Vázquez Montalbán i Terenci Moix",
+    funcio: "Intel·lectualització de l'escena",
+    categoria: "Publicacions i crònica",
+    bio:
+      "Mitjançant articles i columnes, intel·lectualitzaren l'escena i donaren a l'ona la validació del discurs literari i sociològic que, d'altra manera, no hauria estat llegida només com a moda jove.",
+    tags: ["Crítica", "Literatura", "Sociologia"],
+    color: "#854d0e",
+  },
+  {
+    id: "radios-mitjans",
+    nom: "Ràdios i mitjans",
+    funcio: "Megàfon i eclipsament",
+    categoria: "Publicacions i crònica",
+    bio:
+      "La primera font subratlla el rol negatiu del pes mediàtic madrileny (Jesús Ordovás, Gonzalo Garrido) en l'eclipsament de Barcelona; per contra, alguns programes radiofònics de Ràdio Barcelona van fer de megàfon de l'escena local durant la tardor del moviment.",
+    tags: ["Ràdio Barcelona", "Ordovás", "Garrido"],
+    color: "#78350f",
+  },
+  {
+    id: "fotografs",
+    nom: "Fotògrafs de l'època",
+    funcio: "Iconografia de la nit de Barcelona",
+    categoria: "Publicacions i crònica",
+    bio:
+      "Colita, Manolo Laguillo i Manuel H. Huguet, entre d'altres, fixaren la iconografia de la nit de Barcelona i deliren a l'escena la memòria visual que encara avui la identifica.",
+    tags: ["Colita", "Laguillo", "Huguet"],
+    color: "#a1582c",
+  },
+  // --- 6.8.4 Memòria i recuperació ---
+  {
+    id: "alex-gomez-font",
+    nom: "Àlex Gómez-Font",
+    funcio: "Text fundacional del renaixement historiogràfic",
+    categoria: "Memòria i recuperació",
+    bio:
+      "Autor de Barcelona, del rock progressiu a la música laietana (2011): el text fundacional del renaixement historiogràfic del fenomen i punt de partida de la seva revalorització contemporània.",
+    destacar: true,
+    tags: ["2011", "Historiografia"],
+    color: "#f59e0b",
+  },
+  {
+    id: "auditori-2022",
+    nom: "Concerts de l'Auditori (2022) i homenatges",
+    funcio: "Memòria viva de la ciutat",
+    categoria: "Memòria i recuperació",
+    bio:
+      "Els concerts de l'Auditori del 2022 i els homenatges posteriors han convertit aquest patrimoni en memòria viva de la ciutat: el cicle laietà revisitat i celebrat al segle XXI.",
+    tags: ["Auditori 2022", "Homenatges"],
+    color: "#fbbf24",
+  },
+];
+
+// === Cartografia exhaustiva del moviment ===
+export interface FitxaCartografia {
+  id: string;
+  nom: string;
+  tipus: string;
+  text: string;
+  avis?: string;
+  tags?: string[];
+  color: string;
+}
+
+export interface Collectiu {
+  id: string;
+  nom: string;
+  relacio: string;
+  text: string;
+  tags?: string[];
+  color: string;
+}
+
+export const cartografia = {
+  titol: "Cartografia exhaustiva del moviment",
+  subtitol: "Bandes, col·lectius i projectes satèl·lits",
+  apunt:
+    "La ona va ser una constel·lació, no l'òrbita d'una estrella central. Grans solistes (Riba, Sisa), grans formacions de fusió (Dharma, Iceberg), projectes de ball cultiu (Plateria), combos d'estudi (Esqueixada Sniff, Música Dispersa), col·lectius teatrals (Grup de Folk) i veus autòctones limítrofes (Gato, Ovidi) van compartir els mateixos escenaris, els mateixos segells i el mateix públic.",
+  nucli: {
+    etiqueta: "Nucli discogràfic",
+    sub: "Línia Zeleste-Edigsa, segons la font primera",
+    centre: "Zeleste-Edigsa",
+    bandes: [
+      "Barcelona Traction",
+      "Companyia Elèctrica Dharma",
+      "Música Dispersa",
+      "Orquestra Mirasol",
+      "Jaume Sisa",
+      "Jordi Sabatés",
+      "Esqueixada Sniff",
+      "Gato Pérez",
+    ],
+  },
+  fitxes: [
+    {
+      id: "barcelona-traction-fx",
+      nom: "Barcelona Traction",
+      tipus: "Art-pop",
+      text:
+        "Dúo de pop barroca amb LP homònim (1975) dins la línia de la sala. La seva «Els carrusells de la calvície» és potser la cançó laietana de major reedició posterior: folk-fantasmagòric, veus superposades, un mite de l'Sgt. Pepper's de la Vall d'Hebron. Obra de culte tardà que resumeix la voluntat d'art-pop del moviment.",
+      tags: ["LP 1975", "Art-pop", "Culte tardà"],
+      color: "#f59e0b",
+    },
+    {
+      id: "musica-dispersa-fx",
+      nom: "Música Dispersa",
+      tipus: "Combo instrumental",
+      text:
+        "Combo instrumental adscrit al mateix segell, amb material editat a Zeleste-Edigsa que lliga progressiu, jazz i melodies locals. Representa l'ala més anònima —i per tant més honesta— del cercle: música d'estudi i directes de qualitat, sense estrelatge mediàtic.",
+      tags: ["Instrumental", "Estudi", "Sense estrelatge"],
+      color: "#d97706",
+    },
+    {
+      id: "orquestra-mirasol-fx",
+      nom: "Orquestra Mirasol",
+      tipus: "Folk i acompanyament",
+      text:
+        "Formació de folk i acompanyament vinculada decisivament a la modernització del discurs de Maria del Mar Bonet —amb ella, el seu disc Maria del Mar (1974) va fer confluir la cançó mediterrània i l'elèctric experimental—, publicada també dins el món de l'Edigsa. La Mirasol és la prova que l'ona laietana comparteix ADN amb certes franges de la Nova Cançó electrificada.",
+      tags: ["Maria del Mar (1974)", "Nova Cançó electrificada"],
+      color: "#e11d48",
+    },
+    {
+      id: "smash-fx",
+      nom: "Smash",
+      tipus: "Confusió d'atribució",
+      text:
+        "El dossier 2 situa «Smash» al costat de Fusioon i Tukky en un recital a Granollers, però amb la denominació exacta la referència universal de «Smash» és el duo granadí del rock andalú, no una banda del nucli laietà. Cal no descartar que la font inclogui un grup barceloní homònim o una confusió d'atribució: s'ha conservat al text amb l'avís corresponent.",
+      avis: "Nota de l'editor: possible confusió d'atribució o grup homònim.",
+      tags: ["Granollers", "Rock andalú"],
+      color: "#92400e",
+    },
+    {
+      id: "buzzards-fx",
+      nom: "Buzzards",
+      tipus: "Menció",
+      text:
+        "Esmentat a la font segona com a formació de l'entorn del progressiu barceloní del moment: sense documentació addicional en el nostre dossier, se'n registra la menció.",
+      avis: "Menció sense documentació addicional.",
+      tags: ["Progressiu barceloní"],
+      color: "#854d0e",
+    },
+    {
+      id: "tukky-fx",
+      nom: "Tukky («Màquina Tukky»)",
+      tipus: "Progressiu/urbà",
+      text:
+        "En algunes referències, «Màquina Tukky»: conjunt de rock progressiu/urbà de l'òrbita de Tapi i Herrera; la seva citació als dossiers confirma la proliferació de bandes després de l'èxit de Màquina!.",
+      tags: ["Màquina Tukky", "Tapi i Herrera"],
+      color: "#a16207",
+    },
+    {
+      id: "slobo-secta-fx",
+      nom: "Slobo i Secta Sònica",
+      tipus: "Formacions prèvies",
+      text:
+        "Les dues formacions prèvies en què va militar Gato Pérez, exemples de la primera onada psicodèlica barcelonina que va donar pas a l'ona propiament dita.",
+      tags: ["Gato Pérez", "Primera onada psicodèlica"],
+      color: "#9a3412",
+    },
+  ] as FitxaCartografia[],
+  collectius: [
+    {
+      id: "grup-de-folk",
+      nom: "Grup de Folk",
+      relacio: "Tribu primigènia",
+      text:
+        "La tribu primigènia —Ovidi Montllor, Jaume Sisa i Pau Riba, Oriol Tramvia, Carles Flavià, Josep Carles Cases i Anna Maria Camps, entre altres— que, a imitació de Dylan i del freak folk anglosaxó, van normalitzar el català de l'escena experimental, amb recitals multitudinaris al Parc de la Ciutadella i una lírica de protesta descomplexada.",
+      tags: ["Dylan", "Parc de la Ciutadella", "Freak folk"],
+      color: "#ca8a04",
+    },
+    {
+      id: "maria-del-mar-bonet",
+      nom: "Maria del Mar Bonet",
+      relacio: "Frontera Nova Cançó ↔ ona laietana",
+      text:
+        "Des de la seva base balear, la seva connexió amb la Mirasol i el seu disc electrificat de 1974 la situen en la frontera entre Nova Cançó i ona laietana.",
+      tags: ["Balear", "Disc 1974"],
+      color: "#b45309",
+    },
+    {
+      id: "llach-raimon",
+      nom: "Lluís Llach i Raimon",
+      relacio: "Referents en l'imaginari compartit",
+      text:
+        "No pertanyen a l'ona laietana, però l'aparició en contextos compartits (festivals, públic jove, normalització del català en concerts massius) els situa com a referents en el mateix imaginari de generacionalisme i repressió.",
+      tags: ["Festivals", "Concerts massius"],
+      color: "#92400e",
+    },
+    {
+      id: "ovidi-montllor",
+      nom: "Ovidi Montllor",
+      relacio: "Figura bisagra",
+      text:
+        "La figura bisagra. Des del País Valencià però amb un vincle constant amb Barcelona —les seves col·laboracions amb Toti Soler, els seus recitals amb Flavià, la radicalitat formal de treballs com A L'Oriol (1972) i Ia (1973)—, encarna la fusió entre cançó de resistència i experimentació pop, precisament el que volia ser l'ona.",
+      tags: ["A L'Oriol (1972)", "Ia (1973)", "Toti Soler"],
+      color: "#7c2d12",
+    },
+  ] as Collectiu[],
+};
+
+export const navegacio = [
+  { id: "manifest", etiqueta: "Manifest" },
+  { id: "context", etiqueta: "Context" },
+  { id: "fusio", etiqueta: "Fusió" },
+  { id: "zeleste", etiqueta: "Zeleste" },
+  { id: "timeline", etiqueta: "Cronologia" },
+  { id: "artistes", etiqueta: "Artistes" },
+  { id: "persones", etiqueta: "Persones" },
+  { id: "cartografia", etiqueta: "Cartografia" },
+  { id: "obres", etiqueta: "Obres" },
+  { id: "recopilatori", etiqueta: "Recopilatori" },
+  { id: "llegat", etiqueta: "Llegat" },
+  { id: "fonts", etiqueta: "Fonts" },
+];
