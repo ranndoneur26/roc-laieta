@@ -91,11 +91,11 @@ export interface FontEnLinia {
 }
 
 export const moviment = {
-  titol: "Rock Laieta",
+  titol: "Rock Laietà",
   subtitol: "Ona laietana · 1970 – 1980",
   lema: "El revulsiu que va canviar la música catalana",
   descripcio:
-    "L'Ona laietana —també dita música laietana o, popularment, Rock Laieta— fou un moviment musical sorgit a la primera meitat dels anys 1970 a Barcelona. No fou un estil musical concret, sinó un moviment generacional: una fusió de jazz-rock progresiu, tradició catalana, flamenc i matisos cubano-brasilers que actuà com a revulsiu en la música del país, esdevingué el precedent directe del Rock Català dels anys 90 i fou, en sentit ple, una revolució contracultural barcelonina.",
+    "L'Ona laietana —també dita música laietana o, popularment, Rock Laietà— fou un moviment musical sorgit a la primera meitat dels anys 1970 a Barcelona. No fou un estil musical concret, sinó un moviment generacional: una fusió de jazz-rock progresiu, tradició catalana, flamenc i matisos cubano-brasilers que actuà com a revulsiu en la música del país, esdevingué el precedent directe del Rock Català dels anys 90 i fou, en sentit ple, una revolució contracultural barcelonina.",
   periode: "1970 – 1980 (nucli) · 1969 – 1997 (cicle ampli)",
   epicentre: "Sala Zeleste — Born, Barcelona",
   identitat:
@@ -730,7 +730,7 @@ export const artistes: Artista[] = [
     funcio: "Himne generacional i cabaret galàctic",
     integrants: ["Jaume Sisa"],
     bio:
-      "Nascut el 1948 i traspassat el 2024, una de les figures més populars, carismàtiques i representatives de l'esperit laietà: teatre musical, experimentació, llum lírica, sarcasme i tendresa, amb una capacitat extraordinària per connectar amb públics diversos. Qualsevol nit pot sortir el sol (1975) simbolitza el fenomen —èxit immediat i transversal, himne de generació, un desig de llum enmig de la nit política. «El Cabaret Galàctic» resumeix el projecte: festiu, culte, oníric i popular; gairebé una definició del moviment.",
+      "Nascut el 1948 i és una de les figures més populars, carismàtiques i representatives de l'esperit laietà: teatre musical, experimentació, llum lírica, sarcasme i tendresa, amb una capacitat extraordinària per connectar amb públics diversos. Qualsevol nit pot sortir el sol (1975) simbolitza el fenomen —èxit immediat i transversal, himne de generació, un desig de llum enmig de la nit política. «El Cabaret Galàctic» resumeix el projecte: festiu, culte, oníric i popular; gairebé una definició del moviment.",
     color: "#ca8a04",
     albums: [
       { titol: "Música Dispersa", any: 1971 },
@@ -991,6 +991,135 @@ export const documentsVisualsEnllacos = [
     url: "https://www.barcelona.cat/barcelonacultura/en/barcelona-cultura/tribute-to-the-barcelona-of-zeleste-and-ona-laietana_1434464",
     tipus: "barcelona.cat",
   },
+  {
+    nom: "Primer encontre d'Ona Mediterrània — lwsn.net",
+    url: "https://lwsn.net/musica/concerts/primer-encontre-de-ona-mediterrania/",
+    tipus: "lwsn.net",
+  },
+  {
+    nom: "Cartells — Concerts a Molins de Rei — lwsn.net",
+    url: "https://lwsn.net/obra-grafica/cartells/concerts-a-molins-de-rei/",
+    tipus: "lwsn.net · Cartells",
+  },
+];
+
+// === Galeria de vídeos dels grups ===
+export interface VideoGrup {
+  id: string;
+  grup: string;
+  embedUrl: string;
+  urlExtern: string;
+}
+
+export const galeriaVideos: VideoGrup[] = [
+  {
+    id: "fusioon-vid",
+    grup: "Fusioon",
+    embedUrl: "https://www.youtube.com/embed/YG4y7vI143g",
+    urlExtern: "https://www.youtube.com/watch?v=YG4y7vI143g",
+  },
+  {
+    id: "secta-sonica-vid",
+    grup: "Secta Sònica",
+    embedUrl: "https://www.youtube.com/embed/RLd0bU4oUoE",
+    urlExtern: "https://www.youtube.com/watch?v=RLd0bU4oUoE",
+  },
+  {
+    id: "maquina-vid",
+    grup: "Màquina!",
+    embedUrl: "https://www.youtube.com/embed/QUEtG3b-Soc",
+    urlExtern: "https://www.youtube.com/watch?v=QUEtG3b-Soc",
+  },
+  {
+    id: "mirasol-vid",
+    grup: "Orquestra Mirasol",
+    embedUrl: "https://www.youtube.com/embed/lh57ZzxmyVM",
+    urlExtern: "https://www.youtube.com/watch?v=lh57ZzxmyVM",
+  },
+  {
+    id: "dharma-vid",
+    grup: "Companyia Elèctrica Dharma",
+    embedUrl: "https://www.youtube.com/embed/KZ49VS7jf74",
+    urlExtern: "https://www.youtube.com/watch?v=KZ49VS7jf74",
+  },
+  {
+    id: "iceberg-vid",
+    grup: "Iceberg",
+    embedUrl: "https://www.youtube.com/embed/SwN2yZ8MduM",
+    urlExtern: "https://www.youtube.com/watch?v=SwN2yZ8MduM",
+  },
+  {
+    id: "gato-perez-vid",
+    grup: "Gato Pérez",
+    embedUrl: "https://www.youtube.com/embed/uZi-pOHFIU4",
+    urlExtern: "https://www.youtube.com/watch?v=uZi-pOHFIU4",
+  },
+  {
+    id: "toti-soler-vid",
+    grup: "Toti Soler",
+    embedUrl: "https://www.youtube.com/embed/gEa28CtNNzk",
+    urlExtern: "https://www.youtube.com/watch?v=gEa28CtNNzk",
+  },
+  {
+    id: "sabates-montoliu-vid",
+    grup: "Jordi Sabatés i Tete Montoliu",
+    embedUrl: "https://www.youtube.com/embed/9h9N_cgNGPg",
+    urlExtern: "https://www.youtube.com/watch?v=9h9N_cgNGPg",
+  },
+  {
+    id: "om-vid",
+    grup: "Om (Toti Soler i Jordi Sabatés)",
+    embedUrl: "https://www.youtube.com/embed/Y8oMDz3SUCw",
+    urlExtern: "https://www.youtube.com/watch?v=Y8oMDz3SUCw",
+  },
+  {
+    id: "musica-urbana-vid",
+    grup: "Música Urbana",
+    embedUrl: "https://www.youtube.com/embed/fp3dATVfAK0",
+    urlExtern: "https://www.youtube.com/watch?v=fp3dATVfAK0",
+  },
+  {
+    id: "barcelona-traction-vid",
+    grup: "Barcelona Traction",
+    embedUrl: "https://www.youtube.com/embed/Ajx41FaMm5o",
+    urlExtern: "https://www.youtube.com/watch?v=Ajx41FaMm5o",
+  },
+  {
+    id: "bueyes-madereros-vid",
+    grup: "Bueyes Madereros",
+    embedUrl: "https://www.youtube.com/embed/LlY3iZh18T8",
+    urlExtern: "https://www.youtube.com/watch?v=LlY3iZh18T8",
+  },
+  {
+    id: "esqueixada-sniff-vid",
+    grup: "Esqueixada Sniff",
+    embedUrl: "https://www.youtube.com/embed/LzCrqPiu_Gs",
+    urlExtern: "https://www.youtube.com/watch?v=LzCrqPiu_Gs",
+  },
+  {
+    id: "orquestra-plateria-vid",
+    grup: "Orquestra Plateria",
+    embedUrl: "https://www.youtube.com/embed/DHtT-C0SSzA",
+    urlExtern: "https://www.youtube.com/watch?v=DHtT-C0SSzA",
+  },
+  {
+    id: "pegasus-vid",
+    grup: "Pegasus",
+    embedUrl: "https://www.youtube.com/embed/jTRjBnWNQhs",
+    urlExtern: "https://www.youtube.com/watch?v=jTRjBnWNQhs",
+  },
+  {
+    id: "sisa-vid",
+    grup: "Sisa",
+    embedUrl: "https://www.youtube.com/embed/ExL9DTGk9hU",
+    urlExtern: "https://www.youtube.com/watch?v=ExL9DTGk9hU",
+  },
+  {
+    id: "pau-riba-vid",
+    grup: "Pau Riba",
+    embedUrl: "https://www.youtube.com/embed/j6eEgchoeLQ",
+    urlExtern: "https://www.youtube.com/watch?v=j6eEgchoeLQ",
+  },
 ];
 
 export const llegat = {
@@ -1083,6 +1212,11 @@ export const fontsEnLinia: FontEnLinia[] = [
     nom: "barcelona.cat — Tribut a Zeleste i l'Ona Laietana",
     url: "https://www.barcelona.cat/barcelonacultura/en/barcelona-cultura/tribute-to-the-barcelona-of-zeleste-and-ona-laietana_1434464",
     descripcio: "Espectacle tribut del 2024 amb 37 músics.",
+  },
+  {
+    nom: "lwsn.net — Ona Mediterrània",
+    url: "https://lwsn.net/",
+    descripcio: "Arxiu digital sobre l'Ona Mediterrània: concerts, obra gràfica i cartells del moviment.",
   },
 ];
 

@@ -27,12 +27,12 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rock-laieta.vercel.app"),
-  title: "Rock Laieta · Ona laietana 1970–1980",
+  title: "Rock Laietà · Ona laietana 1970–1980",
   description:
-    "App interactiva i premium sobre l'Ona laietana (Rock Laieta): el moviment musical barceloní dels anys 70 que fusionà jazz-rock, tradició catalana, flamenc i rumba. Sala Zeleste, Orquestra Mirasol, Companyia Elèctrica Dharma, Iceberg, Secta Sònica, Gato Pérez, Pegasus i més.",
+    "App interactiva i premium sobre l'Ona laietana (Rock Laietà): el moviment musical barceloní dels anys 70 que fusionà jazz-rock, tradició catalana, flamenc i rumba. Sala Zeleste, Orquestra Mirasol, Companyia Elèctrica Dharma, Iceberg, Secta Sònica, Gato Pérez, Pegasus i més.",
   keywords: [
     "Ona laietana",
-    "Rock Laieta",
+    "Rock Laietà",
     "música laietana",
     "Sala Zeleste",
     "Companyia Elèctrica Dharma",
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     "rock català",
     "Barcelona anys 70",
   ],
-  authors: [{ name: "Rock Laieta" }],
+  authors: [{ name: "Rock Laietà" }],
   openGraph: {
-    title: "Rock Laieta · Ona laietana 1970–1980",
+    title: "Rock Laietà · Ona laietana 1970–1980",
     description:
       "El revulsiu que va canviar la música catalana. Ona laietana 1970–1980.",
     type: "website",
@@ -54,13 +54,13 @@ export const metadata: Metadata = {
         url: "/laieta/cover.png",
         width: 1344,
         height: 768,
-        alt: "Rock Laieta — Ona laietana: caràtula d'estil setanter",
+        alt: "Rock Laietà — Ona laietana: caràtula d'estil setanter",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rock Laieta · Ona laietana",
+    title: "Rock Laietà · Ona laietana",
     description: "El revulsiu que va canviar la música catalana.",
     images: ["/laieta/cover.png"],
   },

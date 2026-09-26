@@ -1,4 +1,8 @@
-import { documentsVisuals, documentsVisualsEnllacos } from "@/lib/laieta-data";
+import {
+  documentsVisuals,
+  documentsVisualsEnllacos,
+  galeriaVideos,
+} from "@/lib/laieta-data";
 import { SectionHeading } from "./section-heading";
 import { ExternalLink, Film, Youtube, Tv, Link2 } from "lucide-react";
 
@@ -75,6 +79,46 @@ export function DocumentsVisuals() {
               </article>
             );
           })}
+        </div>
+
+        {/* galeria de vídeos dels grups */}
+        <div className="mt-12">
+          <h3 className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.25em] text-primary">
+            <Youtube className="h-4 w-4" /> Galeria de vídeos — en directe dels grups
+          </h3>
+          <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {galeriaVideos.map((v) => (
+              <article
+                key={v.id}
+                className="overflow-hidden rounded-2xl border border-border/60 bg-card"
+              >
+                <div className="relative aspect-video w-full bg-black">
+                  <iframe
+                    src={v.embedUrl}
+                    title={v.grup}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    className="absolute inset-0 h-full w-full border-0"
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3 p-4">
+                  <h4 className="text-display text-xl text-foreground">
+                    {v.grup}
+                  </h4>
+                  <a
+                    href={v.urlExtern}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-wider text-primary transition hover:underline"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" /> Obre a YouTube →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
         {/* altres enllaços */}

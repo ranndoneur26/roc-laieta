@@ -289,3 +289,62 @@ Work Log:
 
 Stage Summary:
 - Vídeo de BTV "50 anys de la sala Zeleste" incrustat a la secció 04 (Sala Zeleste), responsive 16:9, sense tocar la resta del contingut de la secció. App continua coherent, premium i responsive.
+
+---
+Task ID: 54
+Agent: main (Z.ai Code)
+Task: Afegir lwsn.net a Fonts, 2 enllaços (Primer encontre + Cartells) a "Més enllaços", i crear galeria general de vídeos dels grups.
+
+Work Log:
+- laieta-data.ts: afegit lwsn.net a fontsEnLinia (Recursos en línia) + 2 entrades a documentsVisualsEnllacos ("Primer encontre d'Ona Mediterrània" + "Cartells — Concerts a Molins de Rei", ambdós de lwsn.net) + nou array galeriaVideos (VideoGrup interface) amb 7 vídeos: Fusioon (YG4y7vI143g), Secta Sònica (RLd0bU4oUoE), Màquina! (QUEtG3b-Soc), Orquestra Mirasol (lh57ZzxmyVM, de youtu.be → embed), Companyia Elèctrica Dharma (KZ49VS7jf74), Iceberg (SwN2yZ8MduM), Gato Pérez (uZi-pOHFIU4). Cada un amb embedUrl + urlExtern (youtube.com/watch).
+- documents-visuals.tsx: import galeriaVideos + nou sub-bloc "Galeria de vídeos — en directe dels grups" (h3 + Youtube icon) amb grid grid-cols-1 lg:grid-cols-2 de 7 targetes: iframe 16:9 (aspect-video) + nom del grup (h4) + enllaç "Obre a YouTube →". Inserit entre els embeds generals i la targeta "Més enllaços".
+- ESLint net. Dev server HTTP 200, sense errors. agent-browser: 7 vídeos a la galeria (grups correctes), 9 iframes totals a #doc-visuals (2 generals + 7 galeria), "Primer encontre" Y, "Cartells" Y, lwsn.net a Fonts Y. Mobile 390=390 (sense overflow).
+- VLM (maqueta fidel): confirma la "Galeria de vídeos — en directe dels grups" amb grid de targetes YouTube 16:9 + nom del grup + "Obre a YouTube →", premium.
+
+Stage Summary:
+- Fonts enriquides amb lwsn.net; "Més enllaços" ampliat amb Primer encontre d'Ona Mediterrània i Cartells (lwsn.net).
+- Nova galeria general de vídeos (7 grups: Fusioon, Secta Sònica, Màquina!, Orquestra Mirasol, Dharma, Iceberg, Gato Pérez) dins la secció Doc. Visuals, cada vídeo obrint directament a YouTube.
+- App verificada end-to-end; premium, responsive.
+
+---
+Task ID: 55
+Agent: main (Z.ai Code)
+Task: Rectificar "Rock Laieta" → "Rock Laietà", bio de Sisa, i afegir 6 vídeos nous a la galeria.
+
+Work Log:
+- "Rock Laieta" → "Rock Laietà" (amb accent): laieta-data.ts (moviment.titol + descripció "popularment, Rock Laietà"), layout.tsx (replace_all: title, description, keywords, authors, og:title, og:image alt, twitter:title), globals.css (comentari). metadataBase URL "rock-laieta.vercel.app" mantingut (és URL, sense accent). Els components (hero h1, nav logo, footer) mostren "Rock Laietà" via moviment.titol. Llibres font "El Rock Laietano" (castellà) mantinguts intactes.
+- Bio de Sisa corregida: eliminat "traspassat el 2024", ara "Nascut el 1948 i és una de les figures més populars,".
+- galeriaVideos ampliada de 7 a 13 vídeos (+6): Toti Soler (gEa28CtNNzk), Jordi Sabatés i Tete Montoliu (9h9N_cgNGPg), Om (Y8oMDz3SUCw), Música Urbana (fp3dATVfAK0), Barcelona Traction (Ajx41FaMm5o), Bueyes Madereros (LlY3iZh18T8).
+- ESLint net. Dev server HTTP 200, sense errors. agent-browser: h1="Rock Laietà", title="Rock Laietà · Ona laietana 1970–1980", nav/footer mostren Laietà, 0 ocurrències "Rock Laieta" sense accent al display; Sisa "traspassat el 2024" GONE, "Nascut el 1948 i és" Y; galeria 13 vídeos amb tots els grups nous; Mobile 390=390 (sense overflow).
+
+Stage Summary:
+- Títol rectificat a "Rock Laietà" arreu (display, metadades, footer, nav).
+- Bio de Sisa corregida (no traspassat).
+- Galeria de vídeos ampliada a 13 grups (afegits Toti Soler, Sabatés+Montoliu, Om, Música Urbana, Barcelona Traction, Bueyes Madereros).
+- App verificada end-to-end; premium, responsive.
+
+---
+Task ID: 56
+Agent: main (Z.ai Code)
+Task: Afegir 5 vídeos més a la galeria (Esqueixada Sniff, Orquestra Plateria, Pegasus, Sisa, Pau Riba).
+
+Work Log:
+- galeriaVideos ampliada de 13 a 18 vídeos (+5): Esqueixada Sniff (LzCrqPiu_Gs), Orquestra Plateria (DHtT-C0SSzA), Pegasus (jTRjBnWNQhs), Sisa (ExL9DTGk9hU), Pau Riba (j6eEgchoeLQ). Cada un amb embedUrl + urlExtern.
+- ESLint net. Dev server HTTP 200, sense errors. agent-browser: galeria 18 vídeos, els 5 grups nous presents. Mobile 390=390 (sense overflow).
+
+Stage Summary:
+- Galeria de vídeos ampliada a 18 grups (afegits Esqueixada Sniff, Orquestra Plateria, Pegasus, Sisa, Pau Riba). App verificada; premium, responsive.
+
+---
+Task ID: 57
+Agent: main (Z.ai Code)
+Task: Afegir un botó flotant "torna a dalt" per la landing page llarga.
+
+Work Log:
+- Nou component src/components/laieta/back-to-top.tsx (client): botó circular fix bottom-right (z-30, sota nav i dialog), icona ArrowUp, bg-card/90 + borde terracota + backdrop-blur, hover terracota. Apareix (framer-motion fade/scale) quan scrollY > 500; s'amaga a dalt. Click → window.scrollTo({top:0, behavior:'smooth'}). aria-label "Torna a dalt". Responsive (sm:bottom-6 sm:right-6).
+- page.tsx: <BackToTop/> afegit sota <SiteFooter/>.
+- ESLint net. Dev server HTTP 200, sense errors. agent-browser: ocult a dalt ✓, apareix en fer scroll (>500) ✓, click → scrollY 2500→0 (smooth) ✓, s'amaga en arribar a dalt ✓, visible a mòbil sense overflow (390=390) ✓.
+- VLM: "small circular back-to-top button with upward arrow, bottom-right, premium terracotta tone matching the light-editorial theme".
+
+Stage Summary:
+- Botó flotant "torna a dalt" afegit, apareix en fer scroll i fa scroll suau amunt. App verificada; premium, accessible, responsive.

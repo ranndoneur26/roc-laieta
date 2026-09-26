@@ -13,6 +13,7 @@ import { DocumentsVisuals } from "@/components/laieta/documents-visuals";
 import { Legacy } from "@/components/laieta/legacy";
 import { Sources } from "@/components/laieta/sources";
 import { SiteFooter } from "@/components/laieta/site-footer";
+import { BackToTop } from "@/components/laieta/back-to-top";
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
         <Sources />
       </main>
       <SiteFooter />
+      <BackToTop />
     </div>
   );
 }
