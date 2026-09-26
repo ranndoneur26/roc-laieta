@@ -7,6 +7,7 @@ import {
   Library,
   Globe,
   FileText,
+  ShoppingBag,
 } from "lucide-react";
 
 export function Sources() {
@@ -17,7 +18,7 @@ export function Sources() {
           index="12"
           kicker="Fonts"
           title="Fonts documentals consolidades"
-          description="Atès que el PDF pujat no es va trobar a la carpeta d'upload, el contingut s'ha reconstruït i enriquit a partir d'aquestes fonts primàries, secundàries i recursos en línia."
+          description="Contingut reconstruït i enriquit a partir d'aquestes fonts primàries, secundàries i recursos en línia, en homenatge al moviment."
         />
 
         {/* Primàries */}
@@ -27,9 +28,12 @@ export function Sources() {
           </h3>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {fontsDocumentals.primaries.map((f) => (
-              <div
+              <a
                 key={f.titol}
-                className="group relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent p-5"
+                href={f.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent p-5 transition hover:-translate-y-1 hover:border-primary/60"
               >
                 <span className="absolute inset-x-0 top-0 h-1 bg-primary" />
                 <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-primary/80">
@@ -38,7 +42,10 @@ export function Sources() {
                 <p className="mt-3 text-display text-lg leading-tight text-foreground">
                   {f.titol}
                 </p>
-              </div>
+                <span className="mt-auto inline-flex items-center gap-2 pt-4 font-mono text-[0.65rem] uppercase tracking-wider text-primary">
+                  <ShoppingBag className="h-3.5 w-3.5" /> On comprar →
+                </span>
+              </a>
             ))}
           </div>
         </div>

@@ -20,7 +20,7 @@ export function Hero() {
     <section
       ref={ref}
       id="inici"
-      className="grain relative flex min-h-[92vh] items-center overflow-hidden"
+      className="grain relative flex min-h-[92vh] items-center overflow-hidden bg-[#181816]"
     >
       {/* background image with parallax */}
       <motion.div
@@ -30,14 +30,14 @@ export function Hero() {
         <img
           src="/laieta/hero.png"
           alt="Textura vintage 70s amb solcs de vinil i gradients ambre i bordó"
-          className="h-full w-full object-cover opacity-60"
+          className="h-full w-full object-cover opacity-65"
           loading="eager"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).style.display = "none";
-          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
+        {/* dark mood overlays for text contrast (dark island) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#181816] via-[#181816]/70 to-[#181816]/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#181816]/85 via-transparent to-[#181816]/85" />
+        {/* bottom fade into the cream page */}
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-[#f5f2eb]" />
       </motion.div>
 
       {/* spinning vinyl ornament */}
@@ -47,9 +47,9 @@ export function Hero() {
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="absolute right-[-12%] top-1/2 hidden -translate-y-1/2 md:block"
       >
-        <div className="vinyl-grooves relative aspect-square w-[460px] rounded-full border border-primary/20 bg-secondary/40 shadow-[0_0_120px_-20px] shadow-primary/30">
-          <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 animate-spin-vinyl rounded-full border-4 border-background bg-primary">
-            <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-background" />
+        <div className="vinyl-grooves relative aspect-square w-[460px] rounded-full border border-[#d49b28]/25 bg-[#0e0e0d] shadow-[0_0_120px_-20px] shadow-[#d49b28]/30">
+          <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 animate-spin-vinyl rounded-full border-4 border-[#181816] bg-[#c86234]">
+            <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#181816]" />
           </div>
         </div>
       </motion.div>
@@ -64,10 +64,10 @@ export function Hero() {
           transition={{ duration: 0.6 }}
           className="flex items-center gap-3"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.25em] text-primary">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#d49b28]/40 bg-[#d49b28]/10 px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.25em] text-[#d49b28]">
             <Disc3 className="h-3.5 w-3.5" /> {moviment.periode}
           </span>
-          <span className="hidden items-center gap-1 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground sm:inline-flex">
+          <span className="hidden items-center gap-1 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#f5f2eb]/60 sm:inline-flex">
             <MapPin className="h-3.5 w-3.5" /> {moviment.epicentre}
           </span>
         </motion.div>
@@ -76,10 +76,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.08 }}
-          className="mt-6 text-display text-7xl leading-[0.85] text-foreground sm:text-8xl md:text-[9.5rem]"
+          className="mt-6 text-display text-7xl leading-[0.85] text-[#f5f2eb] sm:text-8xl md:text-[9rem]"
         >
           {moviment.titol}
-          <span className="block text-transparent [-webkit-text-stroke:1.5px_var(--primary)]">
+          <span className="block text-transparent [-webkit-text-stroke:1.5px_#d49b28]">
             {moviment.subtitol.split("·")[0].trim()}
           </span>
         </motion.h1>
@@ -88,10 +88,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 max-w-2xl text-balance-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
+          className="mt-6 max-w-2xl text-balance-pretty text-lg leading-relaxed text-[#f5f2eb]/85 sm:text-xl"
         >
           {moviment.lema}.{" "}
-          <span className="text-foreground/80">{moviment.identitat}</span>
+          <span className="text-[#f5f2eb]/70">{moviment.identitat}</span>
         </motion.p>
 
         <motion.div
@@ -106,7 +106,7 @@ export function Hero() {
                 .getElementById("manifest")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#c86234] px-6 py-3 text-sm font-semibold text-[#f5f2eb] transition hover:bg-[#b5522a]"
           >
             Comença el viatge
             <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
@@ -117,14 +117,14 @@ export function Hero() {
                 .getElementById("artistes")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="inline-flex items-center gap-2 rounded-full border border-border/70 px-6 py-3 text-sm font-semibold text-foreground/90 transition hover:border-primary/60 hover:text-primary"
+            className="inline-flex items-center gap-2 rounded-full border border-[#f5f2eb]/30 px-6 py-3 text-sm font-semibold text-[#f5f2eb] transition hover:border-[#d49b28] hover:text-[#d49b28]"
           >
             Explora els artistes
           </button>
         </motion.div>
 
         {/* marquee strip */}
-        <div className="relative mt-16 overflow-hidden border-y border-border/40 py-3">
+        <div className="relative mt-16 overflow-hidden border-y border-[#f5f2eb]/15 py-3">
           <div className="flex w-max animate-marquee gap-8 whitespace-nowrap">
             {Array.from({ length: 2 }).map((_, i) => (
               <div key={i} className="flex items-center gap-8">
@@ -144,9 +144,9 @@ export function Hero() {
                 ].map((n) => (
                   <span
                     key={n}
-                    className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground"
+                    className="font-mono text-sm uppercase tracking-[0.2em] text-[#f5f2eb]/60"
                   >
-                    {n} <span className="mx-4 text-primary/40">✦</span>
+                    {n} <span className="mx-4 text-[#d49b28]/50">✦</span>
                   </span>
                 ))}
               </div>
@@ -157,15 +157,15 @@ export function Hero() {
 
       {/* scroll cue */}
       <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2 text-muted-foreground">
+        <div className="flex flex-col items-center gap-2 text-[#f5f2eb]/60">
           <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em]">
             Avall
           </span>
-          <div className="flex h-9 w-5 items-start justify-center rounded-full border border-border/60 p-1">
+          <div className="flex h-9 w-5 items-start justify-center rounded-full border border-[#f5f2eb]/30 p-1">
             <motion.span
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.6, repeat: Infinity }}
-              className="h-1.5 w-1.5 rounded-full bg-primary"
+              className="h-1.5 w-1.5 rounded-full bg-[#d49b28]"
             />
           </div>
         </div>

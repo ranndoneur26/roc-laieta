@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   artistes,
   musicsSessio,
+  obresClaue,
+  cartografia,
   type Artista,
   type CategoriaArtista,
 } from "@/lib/laieta-data";
@@ -18,7 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Users, Disc3, Star, Search, SlidersHorizontal } from "lucide-react";
+import { Users, Disc3, Star, Search, SlidersHorizontal, Share2, Network } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const categories: ("Tots" | CategoriaArtista)[] = [
@@ -50,6 +52,40 @@ export function BandExplorer() {
       return catOk && qOk;
     });
   }, [cat, q]);
+
+  const goTo = (id: string) => {
+    setSelected(null);
+    setTimeout(() => {
+      document
+        .getElementById(id)
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 120);
+  };
+
+  const related = selected
+    ? {
+        obres: obresClaue.filter(
+          (o) =>
+            o.artista.toLowerCase().includes(selected.nom.toLowerCase()) ||
+            selected.nom.toLowerCase().includes(o.artista.toLowerCase()),
+        ),
+        fiches: cartografia.fitxes.filter(
+          (f) =>
+            f.nom.toLowerCase().includes(selected.nom.toLowerCase()) ||
+            selected.nom.toLowerCase().includes(f.nom.toLowerCase()),
+        ),
+        collectius: cartografia.collectius.filter(
+          (c) =>
+            c.nom.toLowerCase().includes(selected.nom.toLowerCase()) ||
+            selected.nom.toLowerCase().includes(c.nom.toLowerCase()),
+        ),
+      }
+    : null;
+  const hasRelated =
+    related &&
+    (related.obres.length > 0 ||
+      related.fiches.length > 0 ||
+      related.collectius.length > 0);
 
   return (
     <section id="artistes" className="relative scroll-mt-24 py-20 sm:py-28">
@@ -119,7 +155,7 @@ export function BandExplorer() {
                   <div>
                     <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
                       {a.anyInici}
-                      {a.anyFi ? `–${a.anyFi}` : "–"}
+                      {a.anyFi ? `–${a.anyFi}` : ""}
                     </p>
                     <h3 className="mt-1 text-display text-2xl leading-tight text-foreground">
                       {a.nom}
@@ -293,6 +329,76 @@ export function BandExplorer() {
                       ) : null}
                     </ol>
                   </div>
+
+                  {hasRelated ? (
+                    <div className="mt-6">
+                      <p className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground">
+                        <Network className="h-3.5 w-3.5" /> Relacionat a la constel·lació
+                      </p>
+                      <div className="mt-3 space-y-2">
+                        {related!.obres.map((o) => (
+                          <button
+                            key={o.id}
+                            onClick={() => goTo("obres")}
+                            className="flex w-full items-center gap-3 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2.5 text-left transition hover:border-primary/50"
+                          >
+                            <Disc3 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-medium text-foreground">
+                                {o.titol} · {o.any}
+                              </p>
+                              <p className="text-[0.7rem] text-muted-foreground">
+                                Obra clau · {o.artista}
+                              </p>
+                            </div>
+                            <span className="shrink-0 font-mono text-[0.6rem] uppercase tracking-wider text-primary">
+                              Obres →
+                            </span>
+                          </button>
+                        ))}
+                        {related!.fiches.map((f) => (
+                          <button
+                            key={f.id}
+                            onClick={() => goTo("cartografia")}
+                            className="flex w-full items-center gap-3 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2.5 text-left transition hover:border-primary/50"
+                          >
+                            <Share2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-medium text-foreground">
+                                {f.nom}
+                              </p>
+                              <p className="text-[0.7rem] text-muted-foreground">
+                                Cartografia · {f.tipus}
+                              </p>
+                            </div>
+                            <span className="shrink-0 font-mono text-[0.6rem] uppercase tracking-wider text-primary">
+                              Cartografia →
+                            </span>
+                          </button>
+                        ))}
+                        {related!.collectius.map((c) => (
+                          <button
+                            key={c.id}
+                            onClick={() => goTo("cartografia")}
+                            className="flex w-full items-center gap-3 rounded-lg border border-border/40 bg-secondary/20 px-3 py-2.5 text-left transition hover:border-primary/50"
+                          >
+                            <Users className="h-3.5 w-3.5 shrink-0 text-primary" />
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-medium text-foreground">
+                                {c.nom}
+                              </p>
+                              <p className="text-[0.7rem] text-muted-foreground">
+                                Col·lectiu · {c.relacio}
+                              </p>
+                            </div>
+                            <span className="shrink-0 font-mono text-[0.6rem] uppercase tracking-wider text-primary">
+                              Cartografia →
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               </ScrollArea>
             </>

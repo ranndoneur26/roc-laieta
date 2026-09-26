@@ -128,7 +128,7 @@ export function Tracklist() {
                 {recopilatori.tracks.length} de {recopilatori.cancons}
               </p>
             </div>
-            <ol className="divide-y divide-border/40">
+            <ol className="max-h-[460px] divide-y divide-border/40 overflow-y-auto scroll-warm">
               {recopilatori.tracks.map((t) => {
                 const isActive = active === t.pos;
                 return (
@@ -176,6 +176,9 @@ export function Tracklist() {
                           {t.artista}
                         </p>
                       </div>
+                      <span className="shrink-0 font-mono text-[0.65rem] text-muted-foreground">
+                        {t.durada}
+                      </span>
                       {isActive ? (
                         <Disc3
                           className={cn(
@@ -192,8 +195,8 @@ export function Tracklist() {
               })}
             </ol>
             <p className="border-t border-border/60 px-5 py-3 text-[0.7rem] text-muted-foreground">
-              Llistat parcial (8 de {recopilatori.cancons} cançons). Demostració
-              interactiva sense àudio real.
+              Llistat complet de les {recopilatori.cancons} cançons (2 discs).
+              Demostració interactiva sense àudio real.
             </p>
           </div>
         </div>

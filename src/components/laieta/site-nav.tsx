@@ -5,7 +5,6 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { Menu, X, Disc3 } from "lucide-react";
 import { navegacio, moviment } from "@/lib/laieta-data";
 import { cn } from "@/lib/utils";
-import { FontDisclaimer } from "./font-disclaimer";
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +57,6 @@ export function SiteNav() {
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <FontDisclaimer />
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <button
           onClick={() => go("manifest")}

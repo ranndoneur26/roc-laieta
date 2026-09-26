@@ -122,3 +122,91 @@ Stage Summary:
 - Secció "L'escena laietana" enriquida amb biografies exhaustives i 4 formacions noves (21 figures totals) + sub-bloc de 8 músics de sessió amb valor editorial.
 - L'apartat 6.5 (eix de la fusió instrumentista) plenament representat: Iceberg, Màquina!, Om, Esqueixada Sniff, Fusioon, Música Urbana, Tete Montoliu, Xavier Ribalta + músics de sessió.
 - App verificada end-to-end; sense errors; responsive.
+
+---
+Task ID: 25-27
+Agent: main (Z.ai Code)
+Task: Continuar: creuar les figures amb les seves obres clau i fiches de cartografia (reforçant la tesi de constel·lació) i reconciliar La Flamenca Elèctrica.
+
+Work Log:
+- Tasa 25: Reconciliat l'entrada "La Flamenca Elèctrica" a obresClaue: rellevancia ara "Peça central de la seva producció; track emblemàtic de Coses Nostres (1976)" (coherent amb la discografia d'Iceberg on és track de Coses Nostres).
+- Tasa 26: Afegit bloc "Relacionat a la constel·lació" al diàleg d'artista (band-explorer.tsx):
+  * Imports: obresClaue, cartografia, icones Share2 + Network.
+  * Càlcul de `related` per artista seleccionat: obres clau coincidents (per nom d'artista, includes bidireccional), fiches de cartografia coincidents, i col·lectius coincidents.
+  * Render del bloc dins el ScrollArea del diàleg: cada item és un botó que tanca el diàleg i fa scroll a #obres o #cartografia.
+- Tasa 27: ESLint net. Dev server HTTP 200, sense errors. agent-browser:
+  * Diàleg Iceberg mostra "RELACIONAT A LA CONSTEL·LACIÓ" amb Coses Nostres · 1976 i La Flamenca Elèctrica · 1976 (Obres →).
+  * Diàleg Barcelona Traction mostra la ficha de cartografia (Art-pop, Cartografia →).
+  * Clic als botons "Obres →" / "Cartografia →" tanca el diàleg i fa scroll a la secció (obres top=185, cartografia top=184).
+  * Mobile 390=390 (sense overflow).
+- VLM (mockup fidel): confirma el bloc "Relacionat a la constel·lació" amb dues targetes obres i fletxa OBRES →, disseny premium.
+
+Stage Summary:
+- La app ara és interconnectada: cada artista enllaça amb les seves obres clau (→ #obres) i fiches/col·lectius de cartografia (→ #cartografia), materialitzant la tesi que "la ona va ser una constel·lació".
+- Reconciliada la coherència interna (La Flamenca Elèctrica = track de Coses Nostres).
+- App verificada end-to-end; sense errors; responsive; 12 seccions + blocs interns.
+
+---
+Task ID: 28-31
+Agent: main (Z.ai Code)
+Task: 4 canvis sol·licitats: eliminar Tukky (grup anglès), compactar la cronologia, afegir enllaços de compra dels 2 llibres, actualitzar copyright.
+
+Work Log:
+- Tasa 28: Eliminat Tukky («Màquina Tukky»): eliminada la ficha tukky-fx de cartografia.fitxes; netejada la bio de Fusioon ("al costat d'altres formacions") i la ficha de Smash ("al costat de Fusioon en un recital a Granollers"). Confirmat: 0 referències a Tukky/Tucky al codi.
+- Tasa 29: Compactada la cronologia "De la fundació al llegat": ol space-y-10→space-y-6 (mòbil), li md:py-6→md:py-3 (escriptori, gap 48px→24px), mt-14→mt-10. Disseny premium mantingut.
+- Tasa 30: Afegit camp `url` a FontDocumental + enllaços de compra (Google search amb el títol exacte) als 2 llibres primaris. Sources.tsx: primary cards ara són <a> amb pill "On comprar →" (ShoppingBag).
+- Tasa 31: Footer copyright canviat a "© 2026 · Reconstrucció editorial sobre l'Ona laietana. by Van de CUl." + enllaç www.marcxicola.com (→ https://www.marcxicola.com).
+- Verificació: ESLint net. Dev server HTTP 200. agent-browser: Tukky GONE, cartografia ara 10 articles (6 fitxes + 4 col·lectius, era 11), 2 enllaços "On comprar" amb href correcte, copyright text exacte + enllaç marcxicola. Mobile 390=390 (sense overflow).
+- VLM: cronologia "compact, premium, readable"; enllaços de compra "distinct clickable cards, 'On comprar →' visible, premium dark theme".
+
+Stage Summary:
+- 4 canvis aplicats i verificats end-to-end: Tukky eliminat, cronologia més compacta, enllaços de compra als llibres primaris, copyright amb by-line + domini.
+- App continua coherent, premium i responsive.
+
+---
+Task ID: 32-37
+Agent: main (Z.ai Code)
+Task: Revisió i correcció: eliminar banner d'error, unificar període, completar crèdits del recopilatori, omplir rangs temporals, corregir grafies.
+
+Work Log:
+- Tasa 32: Eliminat el banner d'error "PDF no trobat" (FontDisclaimer) de SiteNav i eliminat el fitxer font-disclaimer.tsx. Convertit l'avís en nota metodològica discreta: la descripció de la secció Fonts ja no esmenta el PDF no trobat ("Contingut reconstruït i enriquit... en homenatge al moviment").
+- Tasa 33: Unificat el període clau a 1970–1980: metadata title, openGraph title i description ara "1970–1980" (abans 1973–1978). El subtítol del moviment ja era 1970–1980; la cronologia (1969–1980+) es manté coherent com a cicle ampli.
+- Tasa 34: Completats els crèdits reals dels 19 temes del recopilatori Picap (via Spotify): tracks 05 Agost→Música Urbana, 06 Tot L'enyor de Demà→Jordi Sabatés, 07 Saura I→Blay Tritono, + 8 Càntics de la Carn→Iceberg, 9 Tango del Rosselló→Toni Xuclà, 10 Odio en las Cavernas→Tropopausa, disc 2: Ocells del Mediterrani→Esqueixada Sniff, La Rumba Criminal→Mirasol Colores, L'home Dibuixat→Orquestra Plateria, Roseta d'Olivella→La Rondalla de la Costa, Llàgrimes I Petons→Pau Riba, Rumba dels 60s→Gato Pérez, Bèstia→Oriol Tramvia, Sardana Flamenca→Toti Soler, Jo Vull Que M'acaricïis→Tete Montoliu. Afegides durades. Tracklist ara scrollable (max-h-460) amb durada per pista; nota "Llistat complet de les 19 cançons (2 discs)". "Formació laietana" eliminat.
+- Tasa 35: Omplerts rangs temporals: Jordi Sabatés 1971–2022 (mort 2022), Om 1973–1974, Barcelona Traction 1973–1975. Arreglat el guió penjant: la tarjeta d'artista ja no mostra "1973–" sinó només l'any d'inici quan no hi ha anyFi (Toti Soler "1973", Xavier Ribalta "1958", etc.).
+- Tasa 36: Corregides grafies: "ilustrat"→"il·lustrat" (3 ocurrències: Pegasus funció/bio + intro del llegat); "adelantat"→"precursor" (Jordi Sabatés funció "precursor de l'ona" + bio "precursor de tants altres companys"). "reverdència" ja estava eliminat al footer (substituït per enllaç marcxicola en la tasca anterior).
+- Tasa 37: ESLint net. Dev server HTTP 200, sense errors. agent-browser: banner GONE, title "1970–1980", 19 pistes amb crèdits reals i durades, "Formació laietana" GONE, Jordi Sabatés 1971–2022, Om 1973–1974, Barcelona Traction 1973–1975, "ilustrat"/"adelantat" GONE, fonts sense menció de PDF no trobat. Mobile 390=390 (sense overflow).
+- VLM: recopilatori amb 19 pistes, crèdits reals, durades, llista scrollable premium, sense "Formació laietana".
+
+Stage Summary:
+- Tots els punts de la revisió corregits i verificats end-to-end: banner eliminat, període unificat 1970–1980, 19 crèdits reals del recopilatori, rangs temporals complets, grafies corregides.
+- App continua coherent, premium i responsive; sensació de prototip trencat eliminada.
+
+---
+Task ID: 38-41
+Agent: main (Z.ai Code)
+Task: Canviar colors i tipografia (a identitat editorial clara: paper crema + terracota/or + serif) sense tocar el contingut.
+
+Work Log:
+- Tasa 38: layout.tsx reescrit amb next/font: Playfair Display (--font-display), Lora (--font-body), Space Grotesk (--font-mono-ui). Eliminat Geist i la classe `dark` del body. Metadades mantingudes (1970–1980).
+- Tasa 39: globals.css reescrit: paleta clara segons les variables de l'usuari (--bg-page #f5f2eb, --text-primary #1c1c1a, --text-muted #6e6a62, --accent-warm #c86234, --accent-gold #d49b28, --border-subtle rgba(28,28,26,.12)). Mapatge a tokens shadcn (--background, --card, --primary=terracota, --secondary=superfície, --muted-foreground, --border, --ring, etc.). Body: font Lora, font-size 1.05rem, line-height 1.65, fondo crema amb radials subtils. Base h1/h2/h3 → Playfair. font-mono (nav/labels/badges) → Space Grotesk via @theme inline. Grain ajustat a multiply/0.28 per a clar. Animacions (spin-vinyl, marquee, pulse-soft, equalizer) i utilities conservades.
+- Tasa 40: hero.tsx reescrit com a "illa fosca" per llegibilitat: section bg #181816, overlays foscos (from-[#181816]) + fade inferior a crema (#f5f2eb), text crema (#f5f2eb) + accents or (#d49b28) + botons terracota. Vinil ornament fosc amb etiqueta terracota. Contingut (títol, subtítol, lede, marquee, botons, scroll cue) intacte.
+- Tasa 41: ESLint net. Dev server HTTP 200, sense errors. agent-browser: body bg #f5f2eb ✓, body font Lora ✓, h2 Playfair ✓, nav/labels Space Grotesk ✓ (--font-mono-ui definit al body). Mobile 390=390 (sense overflow).
+- VLM (3 captures): hero "excellent contrast, light cream text + gold on dark, highly legible"; manifest "premium and readable, serif Playfair/Lora on cream, terracotta/gold accents elegant"; artistes "good readability, premium"; recopilatori "premium, vinyl adds tactile quality, 19-track list well-structured". Cap problema de contrast/llegibilitat.
+
+Stage Summary:
+- Canvi d'identitat visual completat sense tocar contingut: tema fosc vintage → tema clar editorial (paper crema + terracota #c86234 + or #d49b28) amb tipografia serif (Playfair Display + Lora + Space Grotesk).
+- Hero mantingut com a illa fosca cinematogràfica per màxima llegibilitat.
+- Totes les variables CSS de l'usuari aplicades i reutilitzables (--bg-page, --accent-warm, --accent-gold, etc.).
+- App verificada end-to-end (navegador + VLM); premium, llegible, responsive; sense errors.
+
+---
+Task ID: 42
+Agent: main (Z.ai Code)
+Task: Eliminar les fitxes "Smash" i "Buzzards" de les fitxes complementàries (cartografia).
+
+Work Log:
+- Eliminats els dos objectes (smash-fx i buzzards-fx) de cartografia.fitxes a laieta-data.ts.
+- ESLint net. agent-browser: Smash GONE, Buzzards GONE. Cartografia ara 8 articles (4 fitxes + 4 col·lectius; abans 10 = 6+4). Fitxes restants: Barcelona Traction, Música Dispersa, Orquestra Mirasol, Slobo i Secta Sònica.
+
+Stage Summary:
+- Cartografia "Fitxes complementàries" reduïda de 6 a 4 fitxes (elimades les dues amb avís editorials de confusió/menció sense documentació). App continua coherent i verificada.

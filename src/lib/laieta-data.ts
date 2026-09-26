@@ -79,6 +79,7 @@ export interface FontDocumental {
   autor?: string;
   detall?: string;
   tipus: string;
+  url?: string;
 }
 
 export interface FontEnLinia {
@@ -500,11 +501,12 @@ export const artistes: Artista[] = [
     id: "jordi-sabates",
     nom: "Jordi Sabatés",
     anyInici: "1971",
+    anyFi: "2022",
     categoria: "Instrumental",
-    funcio: "Pianista, adelantat a tots",
+    funcio: "Pianista, precursor de l'ona",
     integrants: ["Jordi Sabatés (piano)"],
     bio:
-      "Pianista essencial de l'ona laietana, adelantat a tants altres companys. Col·laborà amb bandes com Picnic i Om, i amb cantautors com Ovidi Montllor, Maria del Mar Bonet i Quico Pi de la Serra, abans de formar el seu propi grup Jarka el 1971. Amb Toti Soler formà també Om. El 1974 publicà amb Tete Montoliu «Vampyria» (gravat a Gemma Estudis), simbiosi excel·lent entre jazz universal i avantguarda local.",
+      "Pianista essencial de l'ona laietana, precursor de tants altres companys. Col·laborà amb bandes com Picnic i Om, i amb cantautors com Ovidi Montllor, Maria del Mar Bonet i Quico Pi de la Serra, abans de formar el seu propi grup Jarka el 1971. Amb Toti Soler formà també Om. El 1974 publicà amb Tete Montoliu «Vampyria» (gravat a Gemma Estudis), simbiosi excel·lent entre jazz universal i avantguarda local.",
     color: "#7c2d12",
     albums: [
       { titol: "Jarka (grup propi)", any: 1971, nota: "Formació del grup" },
@@ -531,6 +533,7 @@ export const artistes: Artista[] = [
     id: "om",
     nom: "Om (Toti Soler i Jordi Sabatés)",
     anyInici: "1973",
+    anyFi: "1974",
     categoria: "Instrumental",
     funcio: "Folk mediterrani + suite progresiva",
     integrants: ["Toti Soler (guitarra)", "Jordi Sabatés (piano)"],
@@ -551,7 +554,7 @@ export const artistes: Artista[] = [
       "Santi Arisa (bateria)",
     ],
     bio:
-      "Projecte de fusió. Amargós i Benavent provenen del jazz-rock, però Benavent —un dels baixistes més reconeguts del país— acabaria sent una peça clau del circuit flamenco de l'època (Paco de Lucía). Les fonts consignen la presència de Fusioon en festivals com el de Granollers, al costat de Tukky i d'altres formacions del cercle de Barcelona.",
+      "Projecte de fusió. Amargós i Benavent provenen del jazz-rock, però Benavent —un dels baixistes més reconeguts del país— acabaria sent una peça clau del circuit flamenco de l'època (Paco de Lucía). Les fonts consignen la presència de Fusioon en festivals com el de Granollers, al costat d'altres formacions del cercle de Barcelona.",
     color: "#92400e",
     albums: [],
   },
@@ -586,6 +589,7 @@ export const artistes: Artista[] = [
     id: "barcelona-traction",
     nom: "Barcelona Traction",
     anyInici: "1973",
+    anyFi: "1975",
     categoria: "Fusió",
     funcio: "Art-pop barroc",
     integrants: ["Formació col·lectiva"],
@@ -660,10 +664,10 @@ export const artistes: Artista[] = [
     anyInici: "1982",
     anyFi: "1997",
     categoria: "Postlaietà",
-    funcio: "Postlaietanisme ilustrat",
+    funcio: "Postlaietanisme il·lustrat",
     integrants: ["Membres hereus de la tradició de Zeleste"],
     bio:
-      "Supergrup que partí de la tradició instrumental de Zeleste de Barcelona i avançà des del laietanisme cap a un «postlaietanisme ilustrat»: un jazz de fusió que conquistà públic i crítica al llarg dels vuit discs que publicaren entre 1982 i 1997.",
+      "Supergrup que partí de la tradició instrumental de Zeleste de Barcelona i avançà des del laietanisme cap a un «postlaietanisme il·lustrat»: un jazz de fusió que conquistà públic i crítica al llarg dels vuit discs que publicaren entre 1982 i 1997.",
     destacat: true,
     color: "#fbbf24",
     albums: [
@@ -850,7 +854,8 @@ export const obresClaue: ObraClau[] = [
     artista: "Iceberg",
     any: "1976",
     anySort: 1976,
-    rellevancia: "Peça central de la seva producció.",
+    rellevancia:
+      "Peça central de la seva producció; track emblemàtic de Coses Nostres (1976).",
     color: "#a16207",
   },
   {
@@ -871,23 +876,34 @@ export const recopilatori = {
   cancons: 19,
   durada: "2 h 01 min",
   descripcio:
-    "Recopilatori crucial per entendre el que es coïa musicalment a la Barcelona de mitjan anys setanta. Posa al pedestal que li correspon la sala Zeleste, epicentre del moviment. Recull 19 cançons dels grups que articularen l'ona laietana.",
+    "Recopilatori crucial per entendre el que es coïa musicalment a la Barcelona de mitjan anys setanta. Posa al pedestal que li correspon la sala Zeleste, epicentre del moviment. Recull 19 cançons (2 discs) dels grups i solistes que articularen l'ona laietana.",
   tracks: [
-    { pos: 1, titol: "No Juguis amb Set Miralls", artista: "Orquestra Mirasol" },
-    { pos: 2, titol: "Violentos los Correa", artista: "Secta Sònica" },
-    { pos: 3, titol: "Sudamérica", artista: "Barcelona Traction" },
-    { pos: 4, titol: "L'Oucomballa", artista: "Companyia Elèctrica Dharma" },
-    { pos: 5, titol: "Agost", artista: "Formació laietana" },
-    { pos: 6, titol: "Tot L'enyor de Demà", artista: "Formació laietana" },
-    { pos: 7, titol: "Saura", artista: "Formació laietana" },
-    { pos: 8, titol: "Llàgrimes I Petons", artista: "Pau Riba" },
+    { pos: 1, titol: "No Juguis amb Set Miralls", artista: "Orquestra Mirasol", durada: "6:59" },
+    { pos: 2, titol: "Violentos los Correa", artista: "Secta Sònica", durada: "5:55" },
+    { pos: 3, titol: "Sudamérica", artista: "Barcelona Traction", durada: "7:31" },
+    { pos: 4, titol: "L'Oucomballa", artista: "Companyia Elèctrica Dharma", durada: "10:06" },
+    { pos: 5, titol: "Agost", artista: "Música Urbana", durada: "6:58" },
+    { pos: 6, titol: "Tot L'enyor de Demà", artista: "Jordi Sabatés", durada: "5:19" },
+    { pos: 7, titol: "Saura I", artista: "Blay Tritono", durada: "9:36" },
+    { pos: 8, titol: "Càntics de la Carn", artista: "Iceberg", durada: "11:19" },
+    { pos: 9, titol: "Tango del Rosselló", artista: "Toni Xuclà", durada: "5:04" },
+    { pos: 10, titol: "Odio en las Cavernas", artista: "Tropopausa", durada: "4:21" },
+    { pos: 11, titol: "Ocells del Mediterrani", artista: "Esqueixada Sniff", durada: "6:08" },
+    { pos: 12, titol: "La Rumba Criminal", artista: "Mirasol Colores", durada: "5:03" },
+    { pos: 13, titol: "L'home Dibuixat", artista: "Orquestra Plateria", durada: "6:28" },
+    { pos: 14, titol: "Roseta d'Olivella", artista: "La Rondalla de la Costa", durada: "2:59" },
+    { pos: 15, titol: "Llàgrimes I Petons", artista: "Pau Riba", durada: "5:55" },
+    { pos: 16, titol: "Rumba dels 60s", artista: "Gato Pérez", durada: "3:31" },
+    { pos: 17, titol: "Bèstia", artista: "Oriol Tramvia", durada: "3:05" },
+    { pos: 18, titol: "Sardana Flamenca", artista: "Toti Soler", durada: "4:29" },
+    { pos: 19, titol: "Jo Vull Que M'acaricïis", artista: "Tete Montoliu", durada: "10:09" },
   ] as Tratxa[],
 } as const;
 
 export const llegat = {
   titol: "El llegat",
   introduccio:
-    "Acabat el cicle laietà (tancament simbòlic el 1980 amb l'arribada de la Movida Madrilenya), la seva empremta perdura: en el postlaietanisme ilustrat de Pegasus, en el naixement del Rock Català dels 90 i en la recuperació i homenatges dels segles XX i XXI.",
+    "Acabat el cicle laietà (tancament simbòlic el 1980 amb l'arribada de la Movida Madrilenya), la seva empremta perdura: en el postlaietanisme il·lustrat de Pegasus, en el naixement del Rock Català dels 90 i en la recuperació i homenatges dels segles XX i XXI.",
   hereus: [
     {
       nom: "Pegasus",
@@ -914,11 +930,13 @@ export const fontsDocumentals = {
     {
       titol: "El Rock Laietano: La Revolución Contracultural de Barcelona 1970–1980",
       tipus: "Font primària · Llibre",
+      url: "https://www.google.com/search?q=%22El+Rock+Laietano%22+%22Revoluci%C3%B3n+Contracultural%22+Barcelona",
     },
     {
       titol:
         "Raíces de la Resistencia: Espacios, Figuras e Identidad en la Contracultura del Rock Laietano",
       tipus: "Font primària · Llibre",
+      url: "https://www.google.com/search?q=%22Ra%C3%ADces+de+la+Resistencia%22+%22Rock+Laietano%22",
     },
   ] as FontDocumental[],
   secondaries: [
@@ -1234,35 +1252,6 @@ export const cartografia = {
         "Formació de folk i acompanyament vinculada decisivament a la modernització del discurs de Maria del Mar Bonet —amb ella, el seu disc Maria del Mar (1974) va fer confluir la cançó mediterrània i l'elèctric experimental—, publicada també dins el món de l'Edigsa. La Mirasol és la prova que l'ona laietana comparteix ADN amb certes franges de la Nova Cançó electrificada.",
       tags: ["Maria del Mar (1974)", "Nova Cançó electrificada"],
       color: "#e11d48",
-    },
-    {
-      id: "smash-fx",
-      nom: "Smash",
-      tipus: "Confusió d'atribució",
-      text:
-        "El dossier 2 situa «Smash» al costat de Fusioon i Tukky en un recital a Granollers, però amb la denominació exacta la referència universal de «Smash» és el duo granadí del rock andalú, no una banda del nucli laietà. Cal no descartar que la font inclogui un grup barceloní homònim o una confusió d'atribució: s'ha conservat al text amb l'avís corresponent.",
-      avis: "Nota de l'editor: possible confusió d'atribució o grup homònim.",
-      tags: ["Granollers", "Rock andalú"],
-      color: "#92400e",
-    },
-    {
-      id: "buzzards-fx",
-      nom: "Buzzards",
-      tipus: "Menció",
-      text:
-        "Esmentat a la font segona com a formació de l'entorn del progressiu barceloní del moment: sense documentació addicional en el nostre dossier, se'n registra la menció.",
-      avis: "Menció sense documentació addicional.",
-      tags: ["Progressiu barceloní"],
-      color: "#854d0e",
-    },
-    {
-      id: "tukky-fx",
-      nom: "Tukky («Màquina Tukky»)",
-      tipus: "Progressiu/urbà",
-      text:
-        "En algunes referències, «Màquina Tukky»: conjunt de rock progressiu/urbà de l'òrbita de Tapi i Herrera; la seva citació als dossiers confirma la proliferació de bandes després de l'èxit de Màquina!.",
-      tags: ["Màquina Tukky", "Tapi i Herrera"],
-      color: "#a16207",
     },
     {
       id: "slobo-secta-fx",

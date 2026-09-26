@@ -36,11 +36,11 @@ export function Timeline() {
           description="Deu moments que acompanyen l'Ona laietana del naixement de Zeleste fins al relleu al Rock Català."
         />
 
-        <div className="relative mt-14">
+        <div className="relative mt-10">
           {/* center line */}
           <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent md:left-1/2" />
 
-          <ol className="space-y-10 md:space-y-0">
+          <ol className="space-y-6 md:space-y-0">
             {timeline.map((ev, i) => {
               const Icon = iconFor(ev.icona);
               const left = i % 2 === 0;
@@ -49,7 +49,7 @@ export function Timeline() {
                   key={ev.any + ev.titol}
                   className={cn(
                     "relative md:grid md:grid-cols-2 md:gap-8",
-                    "md:py-6",
+                    "md:py-3",
                   )}
                 >
                   {/* node */}

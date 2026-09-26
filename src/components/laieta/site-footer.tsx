@@ -82,11 +82,16 @@ export function SiteFooter() {
         <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>
             © {new Date().getFullYear()} · Reconstrucció editorial sobre
-            l&apos;Ona laietana. Sense ànim de lucre.
+            l&apos;Ona laietana. by Van de CUl.
           </p>
-          <p className="font-mono text-[0.65rem] uppercase tracking-wider">
-            Fet amb reverdència · Barcelona
-          </p>
+          <a
+            href="https://www.marcxicola.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[0.65rem] uppercase tracking-wider text-primary transition hover:underline"
+          >
+            www.marcxicola.com
+          </a>
         </div>
       </div>
     </footer>
