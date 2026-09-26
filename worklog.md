@@ -210,3 +210,82 @@ Work Log:
 
 Stage Summary:
 - Cartografia "Fitxes complementàries" reduïda de 6 a 4 fitxes (elimades les dues amb avís editorials de confusió/menció sense documentació). App continua coherent i verificada.
+
+---
+Task ID: 43-47
+Agent: main (Z.ai Code)
+Task: Afegir àudio real (reproductor) i graf de fusió interactiu amb nodes.
+
+Work Log:
+- Tasa 43: Cercats IDs de Spotify/YouTube per a peces clau (Tramuntana, Qualsevol nit, La flamenca) — no n'he tret de fiables. Solució robusta: embed de l'ÀLBUM de Spotify de la compilació (ID 3iKphHnXn5xLVzabQytEfR, verificat abans) que inclou La flamenca elèctrica (track 8) + 18 temes més = àudio real.
+- Tasa 44: tracklist.tsx: afegit iframe embed de Spotify (alçada 352) sota la fila de meta, amb capçalera "Escolta el recopilatori sencer · Spotify / Àudio real". Nota actualitzada: "Reprodueix-les al reproductor de Spotify de dalt" (eliminat "Demostració interactiva sense àudio real"). obres-clau.tsx: afegit enllaç "Escolta a Spotify →" per cada obra (construït dinàmicament com a search link amb títol+artista).
+- Tasa 45: laieta-data.ts: enriquit FusioIngredient amb `grups` (artistes que el practiquen) i `temes` (peces clau) per als 8 ingredients. Ex: jazzrock→[Iceberg, Mirasol, Esqueixada Sniff, Música Urbana, Pegasus]+temes; flamenc→[Toti Soler, Gato Pérez, Iceberg]+[Sardana flamenca, La flamenca elèctrica]; etc.
+- Tasa 46: fusion-diagram.tsx reescrit com a graf interactiu: anell de 8 gèneres + node central ROCK LAIETA + connectors SVG centre→gènere (s'il·luminen en el color del gènere actiu); els gèneres no actius es difuminen. Panell de detall amb descripció, referents, "Grups que el practiquen" (chips animades clicables → scroll #artistes) i "Temes clau" (llista amb enllaç "Escolta" a Spotify per tema). Animació framer-motion en seleccionar gènere.
+- Tasa 47: ESLint net. Dev server HTTP 200, sense errors. agent-browser: embed Spotify present (src correcte), "sense àudio real" GONE, 8 enllaços "Escolta" a Obres. Fusion: clicar node Flamenc → grups Toti/Gato/Iceberg + temes Sardana flamenca/La flamenca elèctrica il·luminats ✓; clicar chip de grup → scroll a #artistes (top=184). Mobile 390=390 (sense overflow).
+- VLM: fusió "premium, interactive circular node graph, selecting a node illuminates the detail panel with group chips + key tracks"; recopilatori "real playable Spotify embed above the tracklist, premium and readable".
+
+Stage Summary:
+- Àudio real integrat: embed de l'àlbum de Spotify de la compilació (19 temes, inclou La flamenca elèctrica) + enllaços "Escolta a Spotify" per obra clau i per tema al graf de fusió. Eliminat l'avís "sense àudio real".
+- Graf de fusió interactiu amb nodes: clicar un gènere il·lumina els grups i temes que el practiquen (chips clicables → artistes + enllaços Escolta).
+- App verificada end-to-end; premium, llegible, responsive; amb àudio real i graf interactiu.
+
+---
+Task ID: 48
+Agent: main (Z.ai Code)
+Task: Eliminar la part inferior redundant del recopilatori (vinil + llista interactiva de 19 pistes + nota) un cop integrat l'embed de Spotify.
+
+Work Log:
+- tracklist.tsx simplificat: eliminat el bloc grid [vinil + now-playing | llista de 19 pistes] i la nota "Llistat complet...". Eliminats els estats/imports client innecessaris (useState, motion, AnimatePresence, Play, Pause, cn). Component ara server-side net.
+- Es manté: SectionHeading, fila de meta (Picap · 2009, 19 cançons, 2 h 01 min) i l'embed de Spotify (àudio real, que ja conté la llista reproduïble de les 19 pistes). Alçada de l'embed ajustada a 380.
+- ESLint net. Dev server HTTP 200, sense errors. agent-browser: "Pista · Títol · Artista" GONE, now-playing GONE, embed Spotify YES. Mobile 390=390 (sense overflow).
+- VLM (maqueta fidel): confirma la secció amb només capçalera + meta + Spotify embed, sense llista/vinil redundant, premium.
+
+Stage Summary:
+- Recopilatori netejat: sense duplicitat amb el reproductor de Spotify. La secció ara és: capçalera + metadades + reproductor real (que ja mostra i reprodueix les 19 pistes).
+- App continua coherent, premium i responsive.
+
+---
+Task ID: 49-51
+Agent: main (Z.ai Code)
+Task: Millora d'arquitectura de titulars (Hn), targetes socials (OG) i cercador d'artistes (accents + estat buit).
+
+Work Log:
+- Tasa 49 (Hn): Auditoria DOM: hi havia 1 h1 (hero) ✓ però "Context" (02) era un sub-bloc h3 dins Manifest en lloc de secció h2 pròpia. Fix: manifest.tsx refactoritzat en dos components — `Manifest` (01, h2) i `Context` (02, h2, secció pròpia amb SectionHeading). page.tsx actualitzat per renderitzar <Context/> entre Manifest i Fusió. Resultat: 1 h1, 12 h2 (una per secció 01-12), grups/àlbums en h3. Jerarquia neta i semàntica.
+- Tasa 50 (OG/social): Generada caràtula social setantera (public/laieta/cover.png, 1344x768, vintage 70s amber/burgundy/vinyl). layout.tsx: afegit metadataBase (https://rock-laieta.vercel.app) + openGraph.images (cover.png amb width/height/alt) + twitter.images. Verificat al head HTML: og:title, og:description, og:image (URL absoluta via metadataBase), og:image:width/height/alt, og:type, twitter:card=summary_large_image, twitter:title/description/image — tot present.
+- Tasa 51 (cercador): band-explorer.tsx: afegida funció `norm` (NFD + treu diacrítics + lowercase) per cerca insensible a accents. Filtre ara usa norm() (ex: "maquina" troba Màquina!). Estat buit millorat: card premium amb icona Search + titular "Cap artista trobat" + missatge "No hi ha coincidències per «{q}». Prova un altre nom, integrant o disc." (substitueix el text pla anterior).
+- Verificació: ESLint net. Dev server HTTP 200. agent-browser: h1=1, h2=12, context=h2 (no h3) ✓; OG/twitter meta al head ✓; cerca "maquina"→1 resultat (Màquina!) ✓; estat buit "Cap artista trobat" ✓. Mobile 390=390 (sense overflow). VLM: estat buit "premium card, 'Cap artista trobat', helpful message".
+
+Stage Summary:
+- Jerarquía Hn neta: 1 h1 + 12 h2 (seccions) + h3 (grups/àlbums) + h4 (sub-items).
+- Targetes socials optimitzades: og:image + twitter:card amb caràtula setantera dedicada i metadataBase per URL absoluta.
+- Cercador d'artistes insensible a accents amb estat buit clar i premium.
+- App verificada end-to-end; premium, accessible, responsive.
+
+---
+Task ID: 52
+Agent: main (Z.ai Code)
+Task: Crear secció "Doc. Visuals" després del recopilatori amb vídeos embed (YouTube + RTVE) que es puguin obrir directament + altres enllaços.
+
+Work Log:
+- laieta-data.ts: afegits DocumentVisual (interface) + documentsVisuals (2 items: documental Àngel Casas TVE amb embed RTVE secure-embed 6638249 + enllaç RTVE Play; concert Canet Rock 1975 amb embed YouTube SdzVPo4kgS0 + enllaç directe youtube.com/watch) + documentsVisualsEnllacos (4 enllaços: RTVE Play, YouTube concert, Spotify recopilatori, barcelona.cat tribut). Navegació ampliada amb "Doc. Visuals" després de Recopilatori.
+- documents-visuals.tsx (nou component, server-side): SectionHeading index "11" + grid d'embeds (lg:grid-cols-2) amb targetes: iframe 16:9 (aspect-video, allowFullScreen) + badge plataforma (Youtube/Tv icon) + titol h3 + descripció + enllaç "Obre a [plataforma] →" (urlExtern). Sota, targeta "Més enllaços" (Link2) amb 4 enllaços externs (Film icon + ExternalLink).
+- page.tsx: <DocumentsVisuals/> inserit entre <Tracklist/> (recopilatori) i <Legacy/>. Renumerats Llegat 11→12 i Fonts 12→13 (legacy.tsx, sources.tsx). site-footer.tsx: afegit enllaç #doc-visuals.
+- ESLint net. Dev server HTTP 200, sense errors. agent-browser: secció #doc-visuals YES, 2 iframes (embeds RTVE + YouTube correctes), 6 enllaços externs (2 "Obre a" + 4 "Més enllaços"), nav inclou "doc. visuals" (case-insensitive), h2=13. Mobile 390=390 + desktop 1280=1280 (sense overflow, després d'afegir grid-cols-1 base als grids).
+- VLM (maqueta fidel): confirma secció 11 "Documents visuals" amb 2 reproductors embed 16:9 (RTVE + YouTube concert) amb títol/descripció/enllaç "Obre a" + "Més enllaços".
+
+Stage Summary:
+- Nova secció "Doc. Visuals" (11) amb àudiovisuals: documental TVE d'Àngel Casas (embed RTVE) + concert Canet Rock 1975 (embed YouTube), cada un obrint directament a la plataforma, més 4 enllaços de recursos. App ara té 13 seccions; índexs i nav coherents.
+- App verificada end-to-end; premium, responsive.
+
+---
+Task ID: 53
+Agent: main (Z.ai Code)
+Task: Incrustar el vídeo de BTV "50 anys de la sala Zeleste" a la secció 04 (Sala Zeleste, l'epicentre).
+
+Work Log:
+- zeleste.tsx: afegit import Tv (lucide). Inserit bloc de vídeo BTV sota el grid d'info de la secció: targeta amb capçalera "BTV · 50 anys de la sala Zeleste" + badge "Documental" + iframe Kaltura (src cdnapisec.kaltura.com/.../entry_id/1_v1nt8c5x, allow autoplay/fullscreen/encrypted-media, allowFullScreen) dins contenidor aspect-video 16:9 responsive.
+- ESLint net. Dev server HTTP 200, sense errors. agent-browser: iframe BTV present a #zeleste (src correcte), badge "BTV" present. Mobile 390=390 (sense overflow).
+- VLM (maqueta fidel): confirma la secció Zeleste amb el bloc vídeo "BTV · 50 anys de la sala Zeleste" + badge Documental + reproductor 16:9, premium.
+
+Stage Summary:
+- Vídeo de BTV "50 anys de la sala Zeleste" incrustat a la secció 04 (Sala Zeleste), responsive 16:9, sense tocar la resta del contingut de la secció. App continua coherent, premium i responsive.

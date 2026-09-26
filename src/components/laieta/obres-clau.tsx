@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { obresClaue } from "@/lib/laieta-data";
 import { SectionHeading } from "./section-heading";
-import { ArrowDownUp, Disc3, ArrowUp, ArrowDown } from "lucide-react";
+import { ArrowDownUp, Disc3, ArrowUp, ArrowDown, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Ordre = "asc" | "desc";
@@ -95,6 +95,14 @@ export function ObresClau() {
                   <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                     {o.rellevancia}
                   </p>
+                  <a
+                    href={`https://open.spotify.com/search/${encodeURIComponent(`${o.titol} ${o.artista}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-wider text-primary transition hover:underline"
+                  >
+                    <Play className="h-3 w-3" /> Escolta a Spotify →
+                  </a>
                 </div>
                 {/* index */}
                 <span className="hidden shrink-0 pt-0.5 font-mono text-[0.6rem] text-muted-foreground/50 sm:inline">

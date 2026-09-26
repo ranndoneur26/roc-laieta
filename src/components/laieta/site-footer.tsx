@@ -62,6 +62,7 @@ export function SiteFooter() {
                   { l: "Cartografia", h: "#cartografia" },
                   { l: "Obres", h: "#obres" },
                   { l: "Recopilatori", h: "#recopilatori" },
+                  { l: "Doc. Visuals", h: "#doc-visuals" },
                   { l: "Llegat", h: "#llegat" },
                   { l: "Fonts", h: "#fonts" },
                 ].map((s) => (

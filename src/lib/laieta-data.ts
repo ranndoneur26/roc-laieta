@@ -48,6 +48,8 @@ export interface FusioIngredient {
   nom: string;
   descripcio: string;
   referents: string[];
+  grups: string[];
+  temes: { titol: string; artista: string }[];
   color: string;
 }
 
@@ -149,6 +151,11 @@ export const fusio: FusioIngredient[] = [
       "Herbie Hancock",
       "Chick Corea",
     ],
+    grups: ["Iceberg", "Orquestra Mirasol", "Esqueixada Sniff", "Música Urbana", "Pegasus"],
+    temes: [
+      { titol: "La flamenca elèctrica", artista: "Iceberg" },
+      { titol: "No Juguis amb Set Miralls", artista: "Orquestra Mirasol" },
+    ],
     color: "#f59e0b",
   },
   {
@@ -157,6 +164,11 @@ export const fusio: FusioIngredient[] = [
     descripcio:
       "L'arrel mediterrània: sardana, cançó popular i una denominació d'origen que marca la identitat del so laietà.",
     referents: ["Sardana", "Cançó popular", "Denominació d'origen catalana"],
+    grups: ["Companyia Elèctrica Dharma", "Toti Soler", "Orquestra Mirasol"],
+    temes: [
+      { titol: "Tramuntana", artista: "Companyia Elèctrica Dharma" },
+      { titol: "Sardana flamenca", artista: "Toti Soler" },
+    ],
     color: "#e11d48",
   },
   {
@@ -169,6 +181,8 @@ export const fusio: FusioIngredient[] = [
       "Maria del Mar Bonet",
       "Quico Pi de la Serra",
     ],
+    grups: ["Maria del Mar Bonet", "Ovidi Montllor", "Orquestra Mirasol"],
+    temes: [{ titol: "Maria del Mar (1974)", artista: "Maria del Mar Bonet" }],
     color: "#d97706",
   },
   {
@@ -177,6 +191,11 @@ export const fusio: FusioIngredient[] = [
     descripcio:
       "L'ala més moderna i psicodèlica del folk català, bressol d'artistes com Sisa i Pau Riba.",
     referents: ["Sisa", "Pau Riba", "Germans Batiste", "Oriol Tràvia"],
+    grups: ["Sisa", "Pau Riba"],
+    temes: [
+      { titol: "Qualsevol nit pot sortir el sol", artista: "Sisa" },
+      { titol: "Dioptria", artista: "Pau Riba" },
+    ],
     color: "#b45309",
   },
   {
@@ -185,6 +204,11 @@ export const fusio: FusioIngredient[] = [
     descripcio:
       "La fusió sense prejudicis: combinar flamenc, tradició catalana i detalls d'altres procedències, com demostrà la «Sardana flamenca».",
     referents: ["Toti Soler", "Sardana flamenca", "Gato Pérez"],
+    grups: ["Toti Soler", "Gato Pérez", "Iceberg"],
+    temes: [
+      { titol: "Sardana flamenca", artista: "Toti Soler" },
+      { titol: "La flamenca elèctrica", artista: "Iceberg" },
+    ],
     color: "#9a3412",
   },
   {
@@ -193,6 +217,8 @@ export const fusio: FusioIngredient[] = [
     descripcio:
       "Salsa, bossa i ritmes llatins que aportaren groove mediterrani i elegancia a la fórmula de l'Orquestra Mirasol.",
     referents: ["Salsa", "Bossa nova", "Salsa catalana"],
+    grups: ["Orquestra Mirasol", "Gato Pérez"],
+    temes: [{ titol: "Rumba dels 60s", artista: "Gato Pérez" }],
     color: "#a16207",
   },
   {
@@ -201,6 +227,8 @@ export const fusio: FusioIngredient[] = [
     descripcio:
       "Els cicles de free jazz a la cartellera de Zeleste: experimentació radical i gesta programadora per a l'època.",
     referents: ["Cicles de free jazz", "Tete Montoliu", "Improvisació col·lectiva"],
+    grups: ["Tete Montoliu", "Jordi Sabatés", "Xavier Ribalta"],
+    temes: [{ titol: "Vampyria", artista: "Tete Montoliu / Jordi Sabatés" }],
     color: "#7c2d12",
   },
   {
@@ -209,6 +237,11 @@ export const fusio: FusioIngredient[] = [
     descripcio:
       "Les composicions llargues i la narrativa simfònica del prog europeu, filtrades per la sensibilitat mediterrània.",
     referents: ["Màquina!", "Iceberg", "Mini-òperes instrumentals"],
+    grups: ["Màquina!", "Iceberg", "Pau Riba"],
+    temes: [
+      { titol: "Why?", artista: "Màquina!" },
+      { titol: "Dioptria", artista: "Pau Riba" },
+    ],
     color: "#92400e",
   },
 ];
@@ -900,6 +933,66 @@ export const recopilatori = {
   ] as Tratxa[],
 } as const;
 
+// === Documents visuals ===
+export interface DocumentVisual {
+  id: string;
+  titol: string;
+  descripcio: string;
+  tipus: "YouTube" | "RTVE" | "Enllaç";
+  embedUrl?: string;
+  urlExtern: string;
+  etiqueta: string;
+  color: string;
+}
+
+export const documentsVisuals: DocumentVisual[] = [
+  {
+    id: "angel-casas-tve",
+    titol: "Documental d'Àngel Casas (TVE)",
+    descripcio:
+      "Reportatge televisiu que retrata l'efervescència de la sala Zeleste i l'Ona laietana, amb testimonis de primera mà del moviment barceloní dels 70.",
+    tipus: "RTVE",
+    embedUrl: "https://secure-embed.rtve.es/drmn/embed/video/6638249/",
+    urlExtern: "https://www.rtve.es/play/",
+    etiqueta: "RTVE Play",
+    color: "#c86234",
+  },
+  {
+    id: "canet-rock-1975",
+    titol: "Concert Canet Rock 1975",
+    descripcio:
+      "Pau Riba, Sisa, Lole y Manuel, Orquestra Plateria, Iceberg i d'altres en l'edició fundacional del festival. Imatges en directe del cicle laietà al Complejo Egatop",
+    tipus: "YouTube",
+    embedUrl: "https://www.youtube.com/embed/SdzVPo4kgS0",
+    urlExtern: "https://www.youtube.com/watch?v=SdzVPo4kgS0",
+    etiqueta: "YouTube",
+    color: "#d49b28",
+  },
+];
+
+export const documentsVisualsEnllacos = [
+  {
+    nom: "Documental Àngel Casas — RTVE Play",
+    url: "https://www.rtve.es/play/",
+    tipus: "RTVE",
+  },
+  {
+    nom: "Concert Canet Rock 1975 — YouTube",
+    url: "https://www.youtube.com/watch?v=SdzVPo4kgS0",
+    tipus: "YouTube",
+  },
+  {
+    nom: "Música Laietana. Zeleste — Spotify",
+    url: "https://open.spotify.com/album/3iKphHnXn5xLVzabQytEfR",
+    tipus: "Spotify",
+  },
+  {
+    nom: "Tribut a Zeleste i l'Ona Laietana — barcelona.cat",
+    url: "https://www.barcelona.cat/barcelonacultura/en/barcelona-cultura/tribute-to-the-barcelona-of-zeleste-and-ona-laietana_1434464",
+    tipus: "barcelona.cat",
+  },
+];
+
 export const llegat = {
   titol: "El llegat",
   introduccio:
@@ -1314,6 +1407,7 @@ export const navegacio = [
   { id: "cartografia", etiqueta: "Cartografia" },
   { id: "obres", etiqueta: "Obres" },
   { id: "recopilatori", etiqueta: "Recopilatori" },
+  { id: "doc-visuals", etiqueta: "Doc. Visuals" },
   { id: "llegat", etiqueta: "Llegat" },
   { id: "fonts", etiqueta: "Fonts" },
 ];

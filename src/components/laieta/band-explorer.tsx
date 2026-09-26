@@ -39,16 +39,22 @@ export function BandExplorer() {
   const [q, setQ] = useState("");
   const [selected, setSelected] = useState<Artista | null>(null);
 
+  const norm = (s: string) =>
+    s
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
   const filtered = useMemo(() => {
     return artistes.filter((a) => {
       const catOk = cat === "Tots" || a.categoria === cat;
-      const qq = q.trim().toLowerCase();
+      const qq = norm(q.trim());
       const qOk =
         !qq ||
-        a.nom.toLowerCase().includes(qq) ||
-        a.bio.toLowerCase().includes(qq) ||
-        a.integrants.some((m) => m.toLowerCase().includes(qq)) ||
-        a.albums.some((al) => al.titol.toLowerCase().includes(qq));
+        norm(a.nom).includes(qq) ||
+        norm(a.bio).includes(qq) ||
+        a.integrants.some((m) => norm(m).includes(qq)) ||
+        a.albums.some((al) => norm(al.titol).includes(qq));
       return catOk && qOk;
     });
   }, [cat, q]);
@@ -190,9 +196,14 @@ export function BandExplorer() {
         </div>
 
         {filtered.length === 0 ? (
-          <p className="mt-10 text-center text-sm text-muted-foreground">
-            Cap resultat per a aquesta cerca.
-          </p>
+          <div className="mt-10 flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border/60 bg-secondary/20 px-6 py-12 text-center">
+            <Search className="h-8 w-8 text-muted-foreground/40" />
+            <p className="text-display text-2xl text-foreground">Cap artista trobat</p>
+            <p className="text-sm text-muted-foreground">
+              No hi ha coincidències per «{q}». Prova un altre nom,
+              integrant o disc.
+            </p>
+          </div>
         ) : null}
 
         {/* músics de sessió i nuclis menors (6.5.9) */}

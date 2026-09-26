@@ -1,6 +1,6 @@
 import { SiteNav } from "@/components/laieta/site-nav";
 import { Hero } from "@/components/laieta/hero";
-import { Manifest } from "@/components/laieta/manifest";
+import { Manifest, Context } from "@/components/laieta/manifest";
 import { FusionDiagram } from "@/components/laieta/fusion-diagram";
 import { Zeleste } from "@/components/laieta/zeleste";
 import { Timeline } from "@/components/laieta/timeline";
@@ -9,6 +9,7 @@ import { PersonesIndispensables } from "@/components/laieta/persones-indispensab
 import { CartografiaMoviment } from "@/components/laieta/cartografia-moviment";
 import { ObresClau } from "@/components/laieta/obres-clau";
 import { Tracklist } from "@/components/laieta/tracklist";
+import { DocumentsVisuals } from "@/components/laieta/documents-visuals";
 import { Legacy } from "@/components/laieta/legacy";
 import { Sources } from "@/components/laieta/sources";
 import { SiteFooter } from "@/components/laieta/site-footer";
@@ -20,6 +21,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Manifest />
+        <Context />
         <FusionDiagram />
         <Zeleste />
         <Timeline />
@@ -28,6 +30,7 @@ export default function Home() {
         <CartografiaMoviment />
         <ObresClau />
         <Tracklist />
+        <DocumentsVisuals />
         <Legacy />
         <Sources />
       </main>

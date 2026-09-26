@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { zeleste } from "@/lib/laieta-data";
 import { SectionHeading } from "./section-heading";
-import { MapPin, CalendarDays, Building2, Music2 } from "lucide-react";
+import { MapPin, CalendarDays, Building2, Music2, Tv } from "lucide-react";
 
 export function Zeleste() {
   return (
@@ -69,6 +69,31 @@ export function Zeleste() {
             <blockquote className="rounded-2xl border-l-2 border-primary bg-primary/5 p-5 text-sm italic leading-relaxed text-foreground/85">
               {zeleste.programacio}
             </blockquote>
+          </div>
+        </div>
+
+        {/* BTV — 50 anys de la sala Zeleste */}
+        <div className="mt-8 overflow-hidden rounded-2xl border border-border/60 bg-card">
+          <div className="flex items-center justify-between border-b border-border/60 px-5 py-2.5">
+            <div className="flex items-center gap-2">
+              <Tv className="h-4 w-4 text-primary" />
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground">
+                BTV · 50 anys de la sala Zeleste
+              </p>
+            </div>
+            <span className="font-mono text-[0.6rem] uppercase tracking-wider text-primary">
+              Documental
+            </span>
+          </div>
+          <div className="relative aspect-video w-full bg-black">
+            <iframe
+              src="https://cdnapisec.kaltura.com/p/2346171/sp/234617100/embedIframeJs/uiconf_id/42600891/partner_id/2346171?iframeembed=true&playerId=1_v1nt8c5x&entry_id=1_v1nt8c5x&flashvars[streamerType]=auto"
+              title="50 anys de la sala Zeleste — BTV"
+              allow="autoplay *; fullscreen *; encrypted-media *"
+              allowFullScreen
+              loading="lazy"
+              className="absolute inset-0 h-full w-full border-0"
+            />
           </div>
         </div>
       </div>

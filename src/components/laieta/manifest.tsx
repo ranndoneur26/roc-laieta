@@ -61,27 +61,22 @@ export function Manifest() {
             </figure>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
 
-        {/* historical context */}
-        <div
-          id="context"
-          className="mt-12 scroll-mt-24 rounded-2xl border border-border/60 bg-gradient-to-br from-secondary/40 via-background to-background p-6 sm:p-10"
-        >
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3 text-primary/80">
-              <span className="font-mono text-xs tracking-widest text-primary">
-                02
-              </span>
-              <span className="h-px w-8 bg-primary/50" />
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-muted-foreground">
-                Context històric
-              </span>
-            </div>
-            <h3 className="text-display text-3xl text-foreground sm:text-4xl">
-              {contextHistoric.titol}
-            </h3>
-          </div>
-          <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+export function Context() {
+  return (
+    <section id="context" className="relative scroll-mt-24 py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionHeading
+          index="02"
+          kicker="Context"
+          title={contextHistoric.titol}
+        />
+        <div className="mt-8 rounded-2xl border border-border/60 bg-gradient-to-br from-secondary/40 via-background to-background p-6 sm:p-10">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {contextHistoric.cos.map((p, i) => (
               <p
                 key={i}
